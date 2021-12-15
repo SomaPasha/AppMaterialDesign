@@ -1,5 +1,7 @@
 package space.kuz.appmaterialdesign.iu.iu.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.api.load
 import space.kuz.appmaterialdesign.R
+import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.DailyImageViewModel
 
 class DailyImageFragment: Fragment() {
 
  private val viewModel by viewModels<DailyImageViewModel>()
-
+ private  lateinit var binding: FragmentDailyImageBinding
  private lateinit var  dailyImageView: ImageView
 
  override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,11 +32,22 @@ class DailyImageFragment: Fragment() {
   container: ViewGroup?,
   savedInstanceState: Bundle?
  ): View? {
-  return inflater.inflate(R.layout.fragment_daily_image,container,false)
+  binding = FragmentDailyImageBinding.inflate(layoutInflater)
+  return binding.root
+  //return inflater.inflate(R.layout.fragment_daily_image,container,false)
  }
  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
   super.onViewCreated(view, savedInstanceState)
   dailyImageView = view.findViewById(R.id.image_view_nasa_image)
+  binding.inputLayoutWiki.setEndIconOnClickListener {
+   val intent = Intent(Intent.ACTION_VIEW)
+   val url = "https://en.wikipedia.org/wiki/${ binding.inputEditTextWiki.text.toString()}"
+   val uri = Uri.parse(url)
+   intent.data = uri
+
+   startActivity(intent)
+  }
+
  }
 
 
