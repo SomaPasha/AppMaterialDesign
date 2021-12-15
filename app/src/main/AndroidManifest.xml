@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMaterialDesign">
         <activity
-            android:name=".MainActivity"
+            android:name=".iu.iu.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
