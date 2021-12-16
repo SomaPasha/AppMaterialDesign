@@ -123,6 +123,11 @@ class DailyImageFragment: Fragment() {
   when (item.itemId) {
    R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
    R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+   android.R.id.home -> {
+    val activity = requireActivity()
+    BottomNavigationDrawerFragment().show(activity.supportFragmentManager, "tag")
+   }
+
   }
   return super.onOptionsItemSelected(item)
  }
