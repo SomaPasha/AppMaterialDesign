@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
@@ -22,11 +23,13 @@ class DailyImageFragment: Fragment() {
 
  private val viewModel by viewModels<DailyImageViewModel>()
  private  lateinit var binding: FragmentDailyImageBinding
+
+
  private lateinit var  dailyImageView: ImageView
  private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
  private lateinit var bottomSheetDescription: TextView
  private lateinit var bottomSheetDescriptionHeader: TextView
-
+ private lateinit var fabAdd: FloatingActionButton
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
 
@@ -48,6 +51,10 @@ class DailyImageFragment: Fragment() {
   dailyImageView = view.findViewById(R.id.image_view_nasa_image)
   bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
   bottomSheetDescriptionHeader =view.findViewById(R.id.bottom_sheet_description_header)
+  fabAdd = view.findViewById(R.id.fab)
+  fabAdd.setOnClickListener {
+   Toast.makeText(context, "ADD", Toast.LENGTH_SHORT).show()
+  }
   binding.inputLayoutWiki.setEndIconOnClickListener {
    val intent = Intent(Intent.ACTION_VIEW)
    val url = "https://en.wikipedia.org/wiki/${ binding.inputEditTextWiki.text.toString()}"
@@ -127,7 +134,6 @@ class DailyImageFragment: Fragment() {
     val activity = requireActivity()
     BottomNavigationDrawerFragment().show(activity.supportFragmentManager, "tag")
    }
-
   }
   return super.onOptionsItemSelected(item)
  }
