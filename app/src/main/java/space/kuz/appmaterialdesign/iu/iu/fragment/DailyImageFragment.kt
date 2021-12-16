@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.Chip
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
@@ -30,6 +31,8 @@ class DailyImageFragment: Fragment() {
  private lateinit var bottomSheetDescription: TextView
  private lateinit var bottomSheetDescriptionHeader: TextView
  private lateinit var fabAdd: FloatingActionButton
+ private lateinit var chipHd: Chip
+ private  var  checkHd: Boolean = true
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
 
@@ -51,6 +54,16 @@ class DailyImageFragment: Fragment() {
   dailyImageView = view.findViewById(R.id.image_view_nasa_image)
   bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
   bottomSheetDescriptionHeader =view.findViewById(R.id.bottom_sheet_description_header)
+  chipHd = view.findViewById(R.id.chip_hd)
+  chipHd.setOnClickListener {
+    if (chipHd.isChecked){
+     checkHd = false
+     viewModel.getImageData().observe(this,{dailyImage->renderData(dailyImage)})
+    } else {
+     checkHd = true
+      viewModel.getImageData().observe(this,{dailyImage->renderData(dailyImage)})
+    }
+  }
   fabAdd = view.findViewById(R.id.fab)
   fabAdd.setOnClickListener {
    Toast.makeText(context, "ADD", Toast.LENGTH_SHORT).show()
@@ -96,7 +109,14 @@ class DailyImageFragment: Fragment() {
     val planationHead = serverResponseData.title
     bottomSheetDescription.text = planation
     bottomSheetDescriptionHeader.text= planationHead
-    val url = serverResponseData.url
+    val url: String?
+    if (checkHd){
+     url = serverResponseData.url
+    } else
+    {
+     url = serverResponseData.hdurl
+    }
+
 
     if (url.isNullOrEmpty()){
 
