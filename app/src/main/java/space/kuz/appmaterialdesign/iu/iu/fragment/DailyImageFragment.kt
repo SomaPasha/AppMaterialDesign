@@ -2,6 +2,7 @@ package space.kuz.appmaterialdesign.iu.iu.fragment
 
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -59,6 +60,8 @@ class DailyImageFragment: Fragment() {
   dailyImageView = view.findViewById(R.id.image_view_nasa_image)
   bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
   bottomSheetDescriptionHeader =view.findViewById(R.id.bottom_sheet_description_header)
+   var customFont = Typeface.createFromAsset(requireActivity().assets,"fonts/Boncegro.otf")
+  bottomSheetDescriptionHeader.setTypeface(customFont)
   chipHd = view.findViewById(R.id.chip_hd)
   chipHd.setOnClickListener {
     if (chipHd.isChecked){
