@@ -2,9 +2,6 @@ package space.kuz.appmaterialdesign.iu.iu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.ActivityMainBinding
 import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
@@ -12,7 +9,7 @@ import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
 class MainActivity : AppCompatActivity(){
 lateinit var  binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-       // setTheme(R.style.ThemeOne);
+        setTheme(Const.currentTheme);
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

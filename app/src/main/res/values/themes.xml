@@ -67,11 +67,11 @@
 
     <style name="fab_style">
         <item name="android:clickable">true</item>
-        <item name="android:backgroundTint">@color/light_blue</item>
+        <item name="android:backgroundTint">?themeColorPrimary</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="layout_anchor">@id/bottom_app_bar</item>
-        <item name="srcCompat">@drawable/ic_baseline_add_circle_outline_24</item>
+        <item name="srcCompat">@drawable/ic_baseline_brightness_3_24</item>
         <item name="tint">@color/white</item>
 
 

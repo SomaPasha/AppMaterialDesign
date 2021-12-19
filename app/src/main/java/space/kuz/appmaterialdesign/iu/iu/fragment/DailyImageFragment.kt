@@ -20,7 +20,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
+import space.kuz.appmaterialdesign.iu.iu.Const
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.DailyImageViewModel
+import java.lang.IllegalStateException
 
 class DailyImageFragment: Fragment() {
 
@@ -69,6 +71,13 @@ class DailyImageFragment: Fragment() {
   }
   fabAdd = view.findViewById(R.id.fab)
   fabAdd.setOnClickListener {
+   val newTheme = when(Const.currentTheme){
+    R.style.ThemeOne ->  R.style.ThemeTwo
+    R.style.ThemeTwo ->  R.style.ThemeOne
+    else -> throw IllegalStateException("Ошибка")
+   }
+   Const.currentTheme = newTheme
+   requireActivity().recreate()
    Toast.makeText(context, "ADD", Toast.LENGTH_SHORT).show()
   }
   binding.inputLayoutWiki.setEndIconOnClickListener {
