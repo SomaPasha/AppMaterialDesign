@@ -1,6 +1,7 @@
 package space.kuz.appmaterialdesign.iu.iu.fragment
 
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -9,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.api.load
@@ -33,9 +35,10 @@ class DailyImageFragment: Fragment() {
  private lateinit var fabAdd: FloatingActionButton
  private lateinit var chipHd: Chip
  private  var  checkHd: Boolean = true
+
+
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
-
   viewModel.getImageData().observe(this,{dailyImage->renderData(dailyImage)})
 
  }
@@ -147,6 +150,7 @@ class DailyImageFragment: Fragment() {
  }
 
  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
   when (item.itemId) {
    R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
    R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()

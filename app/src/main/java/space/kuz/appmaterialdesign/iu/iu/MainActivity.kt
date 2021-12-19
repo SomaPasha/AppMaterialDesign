@@ -12,6 +12,7 @@ import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
 class MainActivity : AppCompatActivity(){
 lateinit var  binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+       // setTheme(R.style.ThemeOne);
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -21,8 +22,6 @@ lateinit var  binding: ActivityMainBinding
         transaction.replace(R.id.fragment_daily, fragment)
         transaction.disallowAddToBackStack()
         transaction.commit()
-
-
 
 
     }
