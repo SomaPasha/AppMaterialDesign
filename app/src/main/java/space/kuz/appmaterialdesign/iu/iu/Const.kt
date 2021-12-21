@@ -4,7 +4,7 @@ import android.app.Application
 import space.kuz.appmaterialdesign.R
 
 class Const {
-    companion object{
-        var currentTheme  = R.style.ThemeOne
+    companion object {
+        var currentTheme = R.style.ThemeOne
     }
 }

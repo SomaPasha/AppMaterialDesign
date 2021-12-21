@@ -8,9 +8,10 @@ import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.ActivityMainBinding
 import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
-lateinit var  binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
@@ -19,7 +20,7 @@ lateinit var  binding: ActivityMainBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragment  = DailyImageFragment()
+        val fragment = DailyImageFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_daily, fragment)
         transaction.disallowAddToBackStack()

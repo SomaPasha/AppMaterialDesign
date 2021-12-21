@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NasaApiRetrofit {
     private val baseUrl = "https://api.nasa.gov/"
 
-    fun getNasaService():NasaApiService{
+    fun getNasaService(): NasaApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(createOkHttpClient())
@@ -19,7 +19,7 @@ class NasaApiRetrofit {
         return retrofit.create(NasaApiService::class.java)
     }
 
-    private fun createOkHttpClient():OkHttpClient{
+    private fun createOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(
             HttpLoggingInterceptor.Level.BODY
