@@ -36,8 +36,7 @@ class UniverseFragment: Fragment() {
 
         adapter.items = UniversePageType.values().toList()
         viewPager.adapter = adapter
-
-       // viewPager.setPageTransformer()
+        viewPager.setPageTransformer(ZoomOutPageTransformer())
 
         viewPager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
             override fun onPageScrolled(
