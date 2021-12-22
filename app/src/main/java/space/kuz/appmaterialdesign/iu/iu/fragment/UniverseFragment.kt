@@ -17,6 +17,7 @@ import space.kuz.appmaterialdesign.iu.iu.adapter.UniverseStatePagerAdapter
 import space.kuz.appmaterialdesign.iu.iu.universescreen.DailyUniverseScreen
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.EarthViewModel
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.UniverseViewModel
+import space.kuz.appmaterialdesign.transformer.DepthPageTransformer
 import space.kuz.appmaterialdesign.transformer.ZoomOutPageTransformer
 
 class UniverseFragment: Fragment() {
@@ -40,7 +41,7 @@ class UniverseFragment: Fragment() {
         val screens = viewModel.getFragmentUniverse().value as List<UniverseScreen>
         adapter.items = screens
         viewPager.adapter = adapter
-        viewPager.setPageTransformer(ZoomOutPageTransformer() )
+        viewPager.setPageTransformer(DepthPageTransformer() )
 
         viewPager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
             override fun onPageScrolled(
