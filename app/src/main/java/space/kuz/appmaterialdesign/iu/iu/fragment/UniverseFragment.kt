@@ -6,17 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import space.kuz.appmaterialdesign.R
+import space.kuz.appmaterialdesign.iu.iu.adapter.UniverseScreen
 import space.kuz.appmaterialdesign.iu.iu.universescreen.EarthUniverseScreen
 import space.kuz.appmaterialdesign.iu.iu.adapter.UniverseStatePagerAdapter
 import space.kuz.appmaterialdesign.iu.iu.universescreen.DailyUniverseScreen
+import space.kuz.appmaterialdesign.iu.iu.viewmodel.EarthViewModel
+import space.kuz.appmaterialdesign.iu.iu.viewmodel.UniverseViewModel
 import space.kuz.appmaterialdesign.transformer.ZoomOutPageTransformer
 
 class UniverseFragment: Fragment() {
-
+    private val viewModel by viewModels<UniverseViewModel>()
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     override fun onCreateView(
@@ -33,7 +37,7 @@ class UniverseFragment: Fragment() {
 
         viewPager = view.findViewById(R.id.view_pager_universe)
         val adapter = UniverseStatePagerAdapter(this)
-        val screens = listOf(DailyUniverseScreen(), EarthUniverseScreen() )
+        val screens = viewModel.getFragmentUniverse().value as List<UniverseScreen>
         adapter.items = screens
         viewPager.adapter = adapter
         viewPager.setPageTransformer(ZoomOutPageTransformer() )
