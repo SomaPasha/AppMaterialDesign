@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.UniversePageType
 import space.kuz.appmaterialdesign.iu.iu.adapter.UniverseStatePagerAdapter
+import space.kuz.appmaterialdesign.transformer.ZoomOutPageTransformer
 
 class UniverseFragment: Fragment() {
 
