@@ -1,13 +1,19 @@
 package space.kuz.appmaterialdesign.transformer
 
+import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
+import space.kuz.appmaterialdesign.iu.iu.MainActivity
+import space.kuz.appmaterialdesign.iu.iu.fragment.UniverseFragment
 
 
-class ZoomOutPageTransformer : ViewPager2.PageTransformer {
+class ZoomOutPageTransformer() : ViewPager2.PageTransformer {
+
     override fun transformPage(view: View, position: Float) {
         val pageWidth: Int = view.getWidth()
         val pageHeight: Int = view.getHeight()
+       // Toast.makeText( UniverseFragment().context, "H =  ${pageHeight} , W = ${pageWidth}",Toast.LENGTH_SHORT).show()
         if (position < -1) { // [-Infinity,-1)
             // This page is way off-screen to the left.
             view.setAlpha(0f)

@@ -3,6 +3,7 @@ package space.kuz.appmaterialdesign.iu.iu.adapter
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import space.kuz.appmaterialdesign.domain.entity.UniversePageType
+import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
 import space.kuz.appmaterialdesign.iu.iu.fragment.UniversePageFragment
 
 class UniverseStatePagerAdapter(fragment:Fragment):FragmentStateAdapter(fragment) {
@@ -11,7 +12,8 @@ class UniverseStatePagerAdapter(fragment:Fragment):FragmentStateAdapter(fragment
 
     override fun createFragment(position: Int): Fragment {
         val type  = items[position]
-        return UniversePageFragment.newInstanse(type)
+        return DailyImageFragment()
+    //UniversePageFragment.newInstanse(type)
     }
 
     override fun getItemCount(): Int {

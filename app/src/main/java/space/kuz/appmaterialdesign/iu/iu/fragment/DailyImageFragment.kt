@@ -42,8 +42,8 @@ class DailyImageFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
-
+       viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
+      //  viewModel.getImageDataEarth().observe(this, { dailyImage -> renderData2(dailyImage) })
     }
 
     override fun onCreateView(
@@ -160,6 +160,31 @@ class DailyImageFragment : Fragment() {
 
                 if (url.isNullOrEmpty()) {
 
+                } else {
+                    dailyImageView.load(url) {
+                        lifecycle(this@DailyImageFragment)
+                        error(R.drawable.ic_error)
+                        placeholder(R.drawable.ic_placeholder)
+                    }
+                }
+            }
+            is DailyImage.Loading -> {
+
+            }
+            is DailyImage.Error -> {
+
+            }
+        }
+    }
+
+
+    private fun renderData2(dailyImage: DailyImage) {
+        when (dailyImage) {
+            is DailyImage.SuccessEarth -> {
+                val serverResponseData = dailyImage.serverResponseData
+                val url: String?
+                    url = serverResponseData.url
+                if (url.isNullOrEmpty()) {
                 } else {
                     dailyImageView.load(url) {
                         lifecycle(this@DailyImageFragment)
