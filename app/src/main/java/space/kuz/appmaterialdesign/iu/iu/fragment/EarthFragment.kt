@@ -23,11 +23,12 @@ import space.kuz.appmaterialdesign.databinding.FragmentUniverseBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.iu.iu.Const
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.DailyImageViewModel
+import space.kuz.appmaterialdesign.iu.iu.viewmodel.EarthViewModel
 import java.lang.IllegalStateException
 
 class EarthFragment : Fragment() {
 
-    private val viewModel by viewModels<DailyImageViewModel>()
+    private val viewModel by viewModels<EarthViewModel>()
     private lateinit var binding : FragmentEarthBinding
 
 

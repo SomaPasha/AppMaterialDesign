@@ -178,29 +178,6 @@ class DailyImageFragment : Fragment() {
     }
 
 
-    private fun renderData2(dailyImage: DailyImage) {
-        when (dailyImage) {
-            is DailyImage.SuccessEarth -> {
-                val serverResponseData = dailyImage.serverResponseData
-                val url: String?
-                    url = serverResponseData.url
-                if (url.isNullOrEmpty()) {
-                } else {
-                    dailyImageView.load(url) {
-                        lifecycle(this@DailyImageFragment)
-                        error(R.drawable.ic_error)
-                        placeholder(R.drawable.ic_placeholder)
-                    }
-                }
-            }
-            is DailyImage.Loading -> {
-
-            }
-            is DailyImage.Error -> {
-
-            }
-        }
-    }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
