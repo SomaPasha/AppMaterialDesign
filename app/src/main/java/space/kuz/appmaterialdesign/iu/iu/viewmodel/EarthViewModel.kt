@@ -7,24 +7,24 @@ import retrofit2.Call
 import retrofit2.Response
 import space.kuz.appmaterialdesign.BuildConfig
 import space.kuz.appmaterialdesign.data.retrofit.NasaApiRetrofit
-import space.kuz.appmaterialdesign.domain.entity.DailyImage
+import space.kuz.appmaterialdesign.domain.entity.EarthImage
 import space.kuz.appmaterialdesign.domain.entity.NASAImageEarth
 import space.kuz.appmaterialdesign.domain.entity.NASAImageResponse
 
 class EarthViewModel(
-    private val liveDataForViewToObserve: MutableLiveData<DailyImage> = MutableLiveData(),
+    private val liveDataForViewToObserve: MutableLiveData<EarthImage> = MutableLiveData(),
     private val retrofitImpl: NasaApiRetrofit = NasaApiRetrofit()
 ): ViewModel() {
 
-    fun getImageDataEarth(): LiveData<DailyImage> {
+    fun getImageDataEarth(): LiveData<EarthImage> {
         sendServerRequestEarth()
         return liveDataForViewToObserve
     }
     private fun sendServerRequestEarth(){
-        liveDataForViewToObserve.value = DailyImage.Loading(null)
+        liveDataForViewToObserve.value =EarthImage.Loading(null)
         val apiKey = BuildConfig.NASA_API_KEY
         if(apiKey.isBlank()){
-            DailyImage.Error(Throwable("Нужен API ключ"))
+            EarthImage.Error(Throwable("Нужен API ключ"))
         } else{
             executeImageRequestEarth(apiKey)
         }
@@ -42,7 +42,7 @@ class EarthViewModel(
                 }
 
                 override fun onFailure(call: Call<NASAImageEarth>, t: Throwable) {
-                    liveDataForViewToObserve.value = DailyImage.Error(t)
+                    liveDataForViewToObserve.value = EarthImage.Error(t)
                 }
 
             }
@@ -50,15 +50,15 @@ class EarthViewModel(
     }
     private fun handleImageResponseEarth(response: Response<NASAImageEarth>) {
         if (response.isSuccessful && response.body() != null) {
-            liveDataForViewToObserve.value = DailyImage.SuccessEarth(response.body()!!)
+            liveDataForViewToObserve.value = EarthImage.SuccessEarth(response.body()!!)
             return
         }
 
         val message = response.message()
         if (message.isNullOrEmpty()) {
-            liveDataForViewToObserve.value = DailyImage.Error(Throwable("Unidentified error"))
+            liveDataForViewToObserve.value = EarthImage.Error(Throwable("Unidentified error"))
         } else {
-            liveDataForViewToObserve.value = DailyImage.Error(Throwable(message))
+            liveDataForViewToObserve.value = EarthImage.Error(Throwable(message))
         }
     }
 

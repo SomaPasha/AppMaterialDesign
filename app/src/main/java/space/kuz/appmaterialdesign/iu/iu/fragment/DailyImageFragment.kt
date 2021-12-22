@@ -1,7 +1,6 @@
 package space.kuz.appmaterialdesign.iu.iu.fragment
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.api.load
@@ -23,7 +21,6 @@ import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.iu.iu.Const
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.DailyImageViewModel
-import java.lang.IllegalStateException
 
 class DailyImageFragment : Fragment() {
 

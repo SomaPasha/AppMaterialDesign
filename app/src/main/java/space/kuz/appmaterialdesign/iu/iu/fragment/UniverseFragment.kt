@@ -1,19 +1,18 @@
 package space.kuz.appmaterialdesign.iu.iu.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import space.kuz.appmaterialdesign.R
-import space.kuz.appmaterialdesign.domain.entity.UniversePageType
+import space.kuz.appmaterialdesign.iu.iu.universescreen.EarthUniverseScreen
 import space.kuz.appmaterialdesign.iu.iu.adapter.UniverseStatePagerAdapter
+import space.kuz.appmaterialdesign.iu.iu.universescreen.DailyUniverseScreen
 import space.kuz.appmaterialdesign.transformer.ZoomOutPageTransformer
 
 class UniverseFragment: Fragment() {
@@ -34,8 +33,8 @@ class UniverseFragment: Fragment() {
 
         viewPager = view.findViewById(R.id.view_pager_universe)
         val adapter = UniverseStatePagerAdapter(this)
-
-        adapter.items = UniversePageType.values().toList()
+        val screens = listOf(DailyUniverseScreen(), EarthUniverseScreen() )
+        adapter.items = screens
         viewPager.adapter = adapter
         viewPager.setPageTransformer(ZoomOutPageTransformer() )
 
@@ -64,7 +63,7 @@ class UniverseFragment: Fragment() {
 
         TabLayoutMediator(tabLayout,viewPager){tab,position->
             val type = adapter.items[position]
-            tab.text = type.name
+            tab.text = type.getType().name
             tab.icon = ContextCompat.getDrawable(requireContext(),R.drawable.fly_image)
         }.attach()
     }

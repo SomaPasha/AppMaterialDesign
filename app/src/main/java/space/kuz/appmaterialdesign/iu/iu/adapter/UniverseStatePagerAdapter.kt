@@ -7,13 +7,18 @@ import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
 import space.kuz.appmaterialdesign.iu.iu.fragment.EarthFragment
 import space.kuz.appmaterialdesign.iu.iu.fragment.UniversePageFragment
 
+
+interface  UniverseScreen{
+    fun getFragment(): Fragment
+    fun getType():UniversePageType
+}
 class UniverseStatePagerAdapter(fragment:Fragment):FragmentStateAdapter(fragment) {
 
-    var items = listOf<UniversePageType>()
+    var items = listOf<UniverseScreen>()
 
     override fun createFragment(position: Int): Fragment {
-        val type  = items[position]
-        return EarthFragment()
+        val screen  = items[position]
+        return screen.getFragment()
     //UniversePageFragment.newInstanse(type)
     }
 
