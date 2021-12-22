@@ -4,5 +4,5 @@ enum class UniversePageType {
 
     Daily,
     Earth,
-    Weather,
+    Video,
 }

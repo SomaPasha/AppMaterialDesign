@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import space.kuz.appmaterialdesign.iu.iu.adapter.UniverseScreen
 import space.kuz.appmaterialdesign.iu.iu.universescreen.DailyUniverseScreen
 import space.kuz.appmaterialdesign.iu.iu.universescreen.EarthUniverseScreen
+import space.kuz.appmaterialdesign.iu.iu.universescreen.NasaVideoUniverseScreen
 
 class UniverseViewModel(
     private val liveDataForViewToObserve: MutableLiveData<List <UniverseScreen>> = MutableLiveData()
@@ -16,6 +17,7 @@ class UniverseViewModel(
             listOf(
                 DailyUniverseScreen()
                 ,EarthUniverseScreen()
+            ,NasaVideoUniverseScreen()
             )
         return liveDataForViewToObserve
     }
