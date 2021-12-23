@@ -16,7 +16,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.bottom_menu_dialog, container, false)
     }

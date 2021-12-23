@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    android:layout_height="match_parent">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image_view_nasa_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerInside"
-        android:background="@color/black"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        <ImageView
+            android:id="@+id/image_view_nasa_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            android:scaleType="centerInside"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-        />
+            />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_hd"
             style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -32,35 +31,36 @@
             android:text="Картинка в HD"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_wiki"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:hint="@string/search_wiki"
-        app:counterEnabled="true"
-        app:boxCornerRadiusBottomStart="25dp"
-        app:counterMaxLength="20"
-        app:endIconMode="custom"
-        app:endIconDrawable="@drawable/ic_wiki"
-        app:endIconCheckable="true"
-        app:helperText="@string/wiki_helper_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view_nasa_image">
+            android:id="@+id/input_layout_wiki"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/search_wiki"
+            app:boxCornerRadiusBottomStart="25dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconCheckable="true"
+            app:endIconDrawable="@drawable/ic_wiki"
+            app:endIconMode="custom"
+            app:helperText="@string/wiki_helper_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view_nasa_image">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_edit_text_wiki"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_edit_text_wiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <include layout="@layout/botton_sheet_layout" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -74,10 +74,10 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#0088FF"
+        android:clickable="true"
         app:layout_anchor="@id/bottom_app_bar"
         app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
         app:tint="#FFFFFF" />
