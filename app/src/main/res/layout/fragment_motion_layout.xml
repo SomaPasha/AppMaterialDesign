@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout_sample"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layoutDescription="@xml/wiki_layout_sample"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_animator_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_placeholder"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_wiki_animation_first"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_wiki"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            android:background="@color/white"
+            app:endIconCheckable="true"
+            app:endIconDrawable="@drawable/ic_wiki"
+            app:endIconMode="custom"
+            app:helperText="@string/wiki_helper_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_animator_button">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_edit_text_wiki_animation_first"
+                android:layout_width="200dp"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_wiki_animation_two"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_wiki"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconCheckable="true"
+            app:endIconDrawable="@drawable/ic_wiki"
+            app:endIconMode="custom"
+            android:background="@color/white"
+            app:helperText="@string/wiki_helper_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_wiki_animation_first">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_edit_text_wiki_animation_two"
+                android:layout_width="200dp"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout_sample_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutDescription="@xml/wiki_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_wiki_animation_three"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_wiki"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconCheckable="true"
+        app:endIconDrawable="@drawable/ic_wiki"
+        app:endIconMode="custom"
+        android:background="@color/white"
+        app:helperText="@string/wiki_helper_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_edit_text_wiki_animation_three"
+            android:layout_width="450dp"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_animator_button_wiki"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="visible"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="35dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_wiki"
+        />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
