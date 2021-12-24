@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@+id/after_click_two"
+        app:constraintSetStart="@+id/before_click_two"
+        app:duration="1000">
+        <OnClick app:targetId="@+id/image_animator_button_wiki" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/after_click_two"  >
+        <Constraint android:id="@+id/input_layout_wiki_animation_three"
+            android:visibility="visible"
+            >
+            <Layout
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/before_click_two"  >
+        <Constraint android:id="@+id/input_layout_wiki_animation_three"
+            android:visibility="invisible"
+            >
+            <Layout
+                android:layout_height="50dp"
+                android:layout_width="1dp"
+                />
+
+        </Constraint>
+
+    </ConstraintSet>
+</MotionScene>
