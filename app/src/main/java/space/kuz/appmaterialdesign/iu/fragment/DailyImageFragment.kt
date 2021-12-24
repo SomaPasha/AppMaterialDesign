@@ -1,4 +1,4 @@
-package space.kuz.appmaterialdesign.iu.iu.fragment
+package space.kuz.appmaterialdesign.iu.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
-import space.kuz.appmaterialdesign.iu.iu.viewmodel.DailyImageViewModel
+import space.kuz.appmaterialdesign.iu.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
 

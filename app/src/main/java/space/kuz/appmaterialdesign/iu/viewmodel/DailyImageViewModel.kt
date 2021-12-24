@@ -1,4 +1,4 @@
-package space.kuz.appmaterialdesign.iu.iu.viewmodel
+package space.kuz.appmaterialdesign.iu.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,6 @@ import retrofit2.Response
 import space.kuz.appmaterialdesign.BuildConfig
 import space.kuz.appmaterialdesign.data.retrofit.NasaApiRetrofit
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
-import javax.security.auth.callback.Callback
 import space.kuz.appmaterialdesign.domain.entity.NASAImageResponse as NASAImageResponse
 
 class DailyImageViewModel(

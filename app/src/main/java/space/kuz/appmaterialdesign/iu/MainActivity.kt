@@ -1,10 +1,10 @@
-package space.kuz.appmaterialdesign.iu.iu
+package space.kuz.appmaterialdesign.iu
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.ActivityMainBinding
-import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
+import space.kuz.appmaterialdesign.iu.fragment.DailyImageFragment
 
 class MainActivity : AppCompatActivity() {
 
