@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         transaction.disallowAddToBackStack()
         transaction.commit()*/
                 val fragment = UniverseFragment()
-
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_daily, fragment)
         transaction.disallowAddToBackStack()

@@ -14,9 +14,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
     private lateinit var navigationView: NavigationView
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.bottom_menu_dialog, container, false)
     }
@@ -29,15 +27,19 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_one -> {
-                Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
                     val fragment = CollapsingToolbarFragment()
                     val transaction = requireActivity().supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_daily, fragment)
                     transaction.addToBackStack(null)
                     transaction.commit()
-            }
-                R.id.navigation_two -> Toast.makeText(context, "2", Toast.LENGTH_SHORT).show()
-
+                }
+                R.id.navigation_two -> {
+                    val fragment = MotionLayoutFragment()
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_daily, fragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+                }
             }
             true
         }
