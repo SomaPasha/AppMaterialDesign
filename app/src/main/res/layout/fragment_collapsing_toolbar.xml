@@ -12,12 +12,13 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/Widget.AppCompat.Toolbar"
             app:contentScrim="@color/light_blue"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
+            app:expandedTitleTextAppearance="@style/collapsing_text_view_style"
             app:layout_scrollFlags="scroll"
             app:scrimAnimationDuration="1000"
-
 >
             <ImageView
                 android:id="@+id/image_view_expanded_toolbar_background"

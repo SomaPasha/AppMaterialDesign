@@ -93,6 +93,17 @@
         <item name="layout_constraintEnd_toEndOf">parent</item>
     </style>
 
+    <style name="collapsing_text_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginTop</item>
+        <item name="paddingStart">@dimen/padding</item>
+        <item name="paddingEnd">@dimen/padding</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
 
     <color name="image_fon">#009688</color>
     <color name="dark_red">#830808</color>
