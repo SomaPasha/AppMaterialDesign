@@ -20,6 +20,7 @@ import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 class DailyImageFragment : Fragment() {
 
     private val viewModel by viewModels<DailyImageViewModel>()
+
     private lateinit var dailyImageView: ImageView
     private lateinit var inputLayoutWiki: TextInputLayout
     private lateinit var inputEditTextWiki: TextInputEditText
@@ -28,7 +29,9 @@ class DailyImageFragment : Fragment() {
     private lateinit var bottomSheetDescriptionHeader: TextView
     private lateinit var fabAdd: FloatingActionButton
     private lateinit var chipHd: Chip
+
     private var checkHd: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
@@ -114,11 +117,10 @@ class DailyImageFragment : Fragment() {
                 val planationHead = serverResponseData.title
                 bottomSheetDescription.text = planation
                 bottomSheetDescriptionHeader.text = planationHead
-                val url: String?
-                if (checkHd) {
-                    url = serverResponseData.url
+                val url=if (checkHd) {
+                    serverResponseData.url
                 } else {
-                    url = serverResponseData.hdurl
+                    serverResponseData.hdurl
                 }
                 if (!url.isNullOrEmpty()) {
                     dailyImageView.load(url) {
