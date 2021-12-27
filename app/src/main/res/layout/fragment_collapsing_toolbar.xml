@@ -56,6 +56,7 @@
         android:backgroundTint="@color/light_blue"
         android:src="@drawable/ic_baseline_eco_24"
         app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|right|end"/>
+       
+        app:layout_anchorGravity="bottom|center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
