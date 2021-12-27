@@ -1,4 +1,4 @@
-package space.kuz.appmaterialdesign.iu.viewmodel
+package space.kuz.appmaterialdesign.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

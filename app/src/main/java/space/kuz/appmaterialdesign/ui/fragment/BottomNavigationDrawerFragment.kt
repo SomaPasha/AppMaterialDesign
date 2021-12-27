@@ -1,4 +1,4 @@
-package space.kuz.appmaterialdesign.iu.fragment
+package space.kuz.appmaterialdesign.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
