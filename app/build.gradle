@@ -30,9 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding{
-        enabled true
-    }
     Properties properties = new Properties()
     properties.load(project.rootProject.file("app.properties").newDataInputStream())
     def  nasaApiKey = properties.getProperty("NASA_API_KEY","")

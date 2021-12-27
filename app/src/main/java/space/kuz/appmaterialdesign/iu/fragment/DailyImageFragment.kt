@@ -4,27 +4,25 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.*
 import space.kuz.appmaterialdesign.R
-import space.kuz.appmaterialdesign.databinding.FragmentDailyImageBinding
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.iu.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
 
     private val viewModel by viewModels<DailyImageViewModel>()
-    private lateinit var binding: FragmentDailyImageBinding
     private lateinit var dailyImageView: ImageView
+    private lateinit var inputLayoutWiki: TextInputLayout
+    private lateinit var inputEditTextWiki: TextInputEditText
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetDescription: TextView
     private lateinit var bottomSheetDescriptionHeader: TextView
@@ -41,8 +39,7 @@ class DailyImageFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentDailyImageBinding.inflate(layoutInflater)
-        return binding.root //return inflater.inflate(R.layout.fragment_daily_image,container,false)
+        return inflater.inflate(R.layout.fragment_daily_image, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,6 +47,8 @@ class DailyImageFragment : Fragment() {
         dailyImageView = view.findViewById(R.id.image_view_nasa_image)
         bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
         bottomSheetDescriptionHeader = view.findViewById(R.id.bottom_sheet_description_header)
+        inputLayoutWiki = view.findViewById(R.id.input_layout_wiki)
+        inputEditTextWiki = view.findViewById(R.id.input_edit_text_wiki)
         chipHd = view.findViewById(R.id.chip_hd)
         chipHd.setOnClickListener {
             if (chipHd.isChecked) {
@@ -64,9 +63,9 @@ class DailyImageFragment : Fragment() {
         fabAdd.setOnClickListener {
             Toast.makeText(context, "ADD", Toast.LENGTH_SHORT).show()
         }
-        binding.inputLayoutWiki.setEndIconOnClickListener {
+        inputLayoutWiki.setEndIconOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            val url = "https://en.wikipedia.org/wiki/${binding.inputEditTextWiki.text.toString()}"
+            val url = "https://en.wikipedia.org/wiki/${inputEditTextWiki.text.toString()}"
             val uri = Uri.parse(url)
             intent.data = uri
             startActivity(intent)
