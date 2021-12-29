@@ -34,21 +34,27 @@
         android:layout_height="wrap_content"
         android:text="Animator Example">
     </Button>
+
+
+    <TextView
+        android:id="@+id/text_view_animation"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Пример Пример Пример"
+        android:textSize="32dp"
+        android:textColor="@color/dark_red"/>
     <Button
         android:id="@+id/constraint_sample_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Constraint Example">
     </Button>
-
-    <TextView
-        android:id="@+id/text_view_animation"
+    <Button
+        android:id="@+id/cancel_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Пример Пример Пример"
-        android:textSize="32dp"
-        android:textColor="@color/dark_red"/>
-
+        android:layout_height="wrap_content"
+        android:text="Cancel">
+    </Button>
 
 </LinearLayout>
