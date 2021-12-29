@@ -17,6 +17,7 @@ class AnimationFragment : Fragment()
     private lateinit var binding :FragmentAnimationBinding
     private lateinit var  animator: ObjectAnimator
     private lateinit var  animatorValue: ValueAnimator
+    private lateinit var  animatorSet: AnimatorSet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,17 +33,28 @@ class AnimationFragment : Fragment()
            setTransitionAnimationSamples()
            setObjectAnimatorSample()
            setValueAnimatorSample()
-           createArgbAnimator()
+        binding.valueRgbAnimationSampleButton.setOnClickListener {
+            createArgbAnimator()
+        }
+           setAnimationSetExample()
         binding.cancelButton.setOnClickListener {
             try {
+                animatorSet.cancel()
                 animator.cancel()
                 animatorValue.cancel()
             }catch (e:Exception){
                 try {
-                    animatorValue.cancel()
                     animator.cancel()
+                    animatorSet.cancel()
+                    animatorValue.cancel()
                 }catch (e:Exception){
+                    try {
+                        animatorValue.cancel()
+                        animator.cancel()
+                        animatorSet.cancel()
+                    }catch (e:Exception){
 
+                    }
                 }
             }
 
@@ -127,9 +139,7 @@ class AnimationFragment : Fragment()
         return animator
     }
 
-    private  fun createArgbAnimator(){
-
-        binding.valueRgbAnimationSampleButton.setOnClickListener {
+    private  fun createArgbAnimator():ValueAnimator{
          animatorValue = ValueAnimator.ofArgb(Color.BLUE,Color.RED)
 
         animatorValue.repeatMode = ValueAnimator.REVERSE
@@ -147,9 +157,17 @@ class AnimationFragment : Fragment()
             onCancel = {}
         )
         animatorValue.start()
-        }
+        return animatorValue
     }
 
+    private fun  setAnimationSetExample(){
+        binding.animatorExampleButton.setOnClickListener {
+            animatorSet = AnimatorSet()
+            val animators = listOf( createArgbAnimator(), createValueAnimator())
+            animatorSet.playTogether(animators)
+            animatorSet.start()
+        }
+    }
 
 
 }
