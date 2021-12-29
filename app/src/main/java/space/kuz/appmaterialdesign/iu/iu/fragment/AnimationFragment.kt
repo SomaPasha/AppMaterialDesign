@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.transition.*
 import android.view.*
 import android.view.animation.DecelerateInterpolator
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.animation.addListener
 import androidx.core.app.ActivityCompat.recreate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.databinding.FragmentAnimationBinding
 import java.util.*
 
@@ -173,7 +175,13 @@ class AnimationFragment : Fragment()
 
     private fun setConstraintExample(){
         binding.constraintExampleButton.setOnClickListener {
-
+TransitionManager.beginDelayedTransition(binding.animationLinearLayout)
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(binding.animationLinearLayout)
+            val parentId = R.id.animation_linear_layout
+            val textViewId =R.id.text_view_animation
+            constraintSet.connect(textViewId, ConstraintSet.BOTTOM, parentId, ConstraintSet.BOTTOM)
+            constraintSet.applyTo(binding.animationLinearLayout)
         }
     }
 
