@@ -45,7 +45,7 @@
         android:textSize="32dp"
         android:textColor="@color/dark_red"/>
     <Button
-        android:id="@+id/constraint_sample_button"
+        android:id="@+id/constraint_example_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Constraint Example">

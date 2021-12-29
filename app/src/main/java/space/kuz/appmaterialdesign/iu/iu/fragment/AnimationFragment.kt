@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.transition.*
 import android.view.*
+import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.addListener
 import androidx.core.app.ActivityCompat.recreate
 import androidx.core.view.isVisible
@@ -37,6 +38,7 @@ class AnimationFragment : Fragment()
             createArgbAnimator()
         }
            setAnimationSetExample()
+        setConstraintExample()
         binding.cancelButton.setOnClickListener {
             try {
                 animatorSet.cancel()
@@ -124,7 +126,7 @@ class AnimationFragment : Fragment()
 
         animator.repeatMode = ValueAnimator.REVERSE
         animator.repeatCount = ValueAnimator.INFINITE
-
+        animator.interpolator = DecelerateInterpolator()
         animator.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Float
             binding.textViewAnimation.alpha = value
@@ -166,6 +168,12 @@ class AnimationFragment : Fragment()
             val animators = listOf( createArgbAnimator(), createValueAnimator())
             animatorSet.playTogether(animators)
             animatorSet.start()
+        }
+    }
+
+    private fun setConstraintExample(){
+        binding.constraintExampleButton.setOnClickListener {
+
         }
     }
 
