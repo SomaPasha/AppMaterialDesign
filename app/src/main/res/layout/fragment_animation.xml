@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/animation_linear_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Button
+        android:id="@+id/transition_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transition Animation Sample"
+        app:layout_constraintTop_toTopOf="parent">
+    </Button>
+    <Button
+        android:id="@+id/object_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Object Animation Sample"
+        app:layout_constraintTop_toBottomOf="@+id/transition_animation_sample_button">
+    </Button>
+    <Button
+        android:id="@+id/value_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Value Animation Sample"
+        app:layout_constraintTop_toBottomOf="@+id/object_animation_sample_button"
+        >
+    </Button>
+    <Button
+        android:id="@+id/value_rgb_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Value RGB Animation Sample"
+        app:layout_constraintTop_toBottomOf="@+id/value_animation_sample_button">
+    </Button>
+    <Button
+        android:id="@+id/animator_example_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Animator Example"
+        app:layout_constraintTop_toBottomOf="@+id/value_rgb_animation_sample_button">
+    </Button>
+
+
+    <TextView
+        android:id="@+id/text_view_animation"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Пример Пример Пример"
+        android:textSize="32dp"
+        android:textColor="@color/dark_red"
+        app:layout_constraintTop_toBottomOf="@+id/animator_example_button"
+        />
+    <Button
+        android:id="@+id/constraint_example_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Constraint Example"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_animation"
+        >
+    </Button>
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_example_button">
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

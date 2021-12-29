@@ -13,4 +13,36 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ThemeAll" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">?themeColorPrimary</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ThemeOne" parent="ThemeAll" >
+
+        <item name="themeColorPrimary">@color/dark_red_night</item>
+        <item name="themeColorPrimaryTwo">@color/light_blue_night</item>
+    </style>
+
+    <style name="ThemeTwo" parent="ThemeAll">
+        <item name="themeColorPrimary">@color/light_blue_night</item>
+        <item name="themeColorPrimaryTwo">@color/dark_red_night</item>
+    </style>
+
+
+
+    <color name="image_fon">#009688</color>
+    <color name="dark_red">#830808</color>
+    <color name="light_blue">#0088FF</color>
+    <color name="dark_red_night">#240200</color>
+    <color name="light_blue_night">#000433</color>
 </resources>
