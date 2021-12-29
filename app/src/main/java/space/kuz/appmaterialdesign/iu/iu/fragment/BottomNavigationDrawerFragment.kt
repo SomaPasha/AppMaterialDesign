@@ -43,6 +43,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.navigation_three -> {
                     val fragment = AnimationFragment()
                     val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    transaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right)
                     transaction.replace(R.id.fragment_daily, fragment)
                     transaction.addToBackStack(null)
                     transaction.commit()
