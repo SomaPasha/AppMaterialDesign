@@ -1,6 +1,7 @@
 package space.kuz.appmaterialdesign.iu.iu.fragment
 
 import android.animation.*
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.*
 import android.view.*
@@ -16,6 +17,7 @@ class AnimationFragment : Fragment()
     private lateinit var binding :FragmentAnimationBinding
     private lateinit var  animator: ObjectAnimator
     private lateinit var  animatorValue: ValueAnimator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,12 +32,18 @@ class AnimationFragment : Fragment()
            setTransitionAnimationSamples()
            setObjectAnimatorSample()
            setValueAnimatorSample()
+           createArgbAnimator()
         binding.cancelButton.setOnClickListener {
             try {
                 animator.cancel()
                 animatorValue.cancel()
             }catch (e:Exception){
+                try {
+                    animatorValue.cancel()
+                    animator.cancel()
+                }catch (e:Exception){
 
+                }
             }
 
         }
@@ -117,6 +125,29 @@ class AnimationFragment : Fragment()
             onCancel = {}
         )
         return animator
+    }
+
+    private  fun createArgbAnimator(){
+
+        binding.valueRgbAnimationSampleButton.setOnClickListener {
+         animatorValue = ValueAnimator.ofArgb(Color.BLUE,Color.RED)
+
+        animatorValue.repeatMode = ValueAnimator.REVERSE
+        animatorValue.repeatCount = ValueAnimator.INFINITE
+        animatorValue.duration = 3_000
+        animatorValue.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Int
+            binding.textViewAnimation.setTextColor(value)
+        }
+
+        animatorValue.addListener(
+            onEnd = {},
+            onStart ={},
+            onRepeat ={},
+            onCancel = {}
+        )
+        animatorValue.start()
+        }
     }
 
 

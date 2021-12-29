@@ -23,10 +23,10 @@
         android:text="Value Animation Sample">
     </Button>
     <Button
-        android:id="@+id/value_argb_animation_sample_button"
+        android:id="@+id/value_rgb_animation_sample_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Value Argb Animation Sample">
+        android:text="Value RGB Animation Sample">
     </Button>
     <Button
         android:id="@+id/animator_example_button"
