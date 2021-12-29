@@ -9,5 +9,10 @@
             android:id="@+id/navigation_two"
             android:icon="@drawable/ic_baseline_send_24"
             android:title="Анимация-Motion Layout" />
+
+        <item
+            android:id="@+id/navigation_three"
+            android:icon="@drawable/ic_baseline_add_circle_outline_24"
+            android:title="Animation" />
     </group>
 </menu>

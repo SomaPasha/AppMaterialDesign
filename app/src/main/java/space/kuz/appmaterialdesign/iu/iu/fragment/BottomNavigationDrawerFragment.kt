@@ -40,6 +40,13 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                     transaction.addToBackStack(null)
                     transaction.commit()
                 }
+                R.id.navigation_three -> {
+                    val fragment = AnimationFragment()
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_daily, fragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+                }
             }
             true
         }

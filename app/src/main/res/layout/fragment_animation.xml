@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/animation_linear_layout" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/transition_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transition Animation Sample">
+    </Button>
+    <Button
+        android:id="@+id/object_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Object Animation Sample">
+    </Button>
+    <Button
+        android:id="@+id/value_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Value Animation Sample">
+    </Button>
+    <Button
+        android:id="@+id/value_argb_animation_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Value Argb Animation Sample">
+    </Button>
+    <Button
+        android:id="@+id/animator_example_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Animator Example">
+    </Button>
+    <Button
+        android:id="@+id/constraint_sample_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Constraint Example">
+    </Button>
+
+    <TextView
+        android:id="@+id/text_view_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Пример Пример Пример"
+        android:textSize="32dp"
+        android:textColor="@color/dark_red"/>
+
+
+</LinearLayout>
