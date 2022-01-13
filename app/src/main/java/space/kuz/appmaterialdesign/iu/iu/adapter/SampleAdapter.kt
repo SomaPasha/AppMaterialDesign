@@ -4,6 +4,7 @@ import android.view.*
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import coil.target.ImageViewTarget
+import com.bumptech.glide.Glide
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.model.*
 
