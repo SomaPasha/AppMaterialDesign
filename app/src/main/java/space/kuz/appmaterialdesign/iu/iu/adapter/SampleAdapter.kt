@@ -1,4 +1,4 @@
-package space.kuz.appmaterialdesign.iu.iu.adapter
+/*package space.kuz.appmaterialdesign.iu.iu.adapter
 
 import android.view.*
 import android.widget.*
@@ -58,4 +58,4 @@ class PlanetViewHolder (
         itemView.setOnClickListener{onPlanetClickListener(planetUiModel)}
     }
 
-    }
+    }*/
