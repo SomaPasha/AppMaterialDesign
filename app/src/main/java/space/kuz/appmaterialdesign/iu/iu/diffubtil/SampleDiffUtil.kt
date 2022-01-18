@@ -3,11 +3,10 @@ package space.kuz.appmaterialdesign.iu.iu.diffubtil
 import androidx.recyclerview.widget.DiffUtil
 import space.kuz.appmaterialdesign.domain.model.*
 import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 
 class SampleDiffUtil(
-    private val oldList:List<PlanetUiModel>,
-    private val newList:List<PlanetUiModel>
+    private val oldList:List<BookUiModel>,
+    private val newList:List<BookUiModel>
 ):DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
@@ -23,7 +22,7 @@ class SampleDiffUtil(
         val newItem = newList[newItemPosition]
 
         return when (oldItem){
-            is PlanetUiModel -> newItem is PlanetUiModel && oldItem.id == newItem.id
+            is BookUiModel -> newItem is BookUiModel && oldItem.id == newItem.id
             else -> throw  IllegalArgumentException("unknown item type")
         }
     }
@@ -33,7 +32,7 @@ class SampleDiffUtil(
         val newItem = newList[newItemPosition]
 
         return when (oldItem){
-            is PlanetUiModel -> newItem is PlanetUiModel && oldItem == newItem
+            is BookUiModel -> newItem is BookUiModel && oldItem == newItem
             else -> throw  IllegalArgumentException("unknown item type")
         }
     }

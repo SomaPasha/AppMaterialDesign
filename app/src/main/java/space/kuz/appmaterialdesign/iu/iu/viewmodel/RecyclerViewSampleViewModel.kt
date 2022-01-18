@@ -1,20 +1,16 @@
 package space.kuz.appmaterialdesign.iu.iu.viewmodel
 
-import android.bluetooth.le.AdvertiseCallback
 import androidx.lifecycle.*
 import space.kuz.appmaterialdesign.domain.model.*
-import java.io.FileDescriptor
 import java.lang.IllegalStateException
-import java.text.ParsePosition
 import java.util.*
-import kotlin.collections.ArrayList
 
 private const val bookPictureUrl= "https://cdn-icons-png.flaticon.com/512/43/43212.png"
 class RecyclerViewSampleViewModel:ViewModel() {
-    private  val itemsLiveData = MutableLiveData<List<PlanetUiModel>>(emptyList())
+    private  val itemsLiveData = MutableLiveData<List<BookUiModel>>(emptyList())
     private  val messageLiveData  = MutableLiveData<String>()
 
-    fun getItems():LiveData<List<PlanetUiModel>>{
+    fun getItems():LiveData<List<BookUiModel>>{
         return  itemsLiveData
     }
 
@@ -23,7 +19,7 @@ class RecyclerViewSampleViewModel:ViewModel() {
     }
 
     fun addItem(title:String, description:String){
-        val planet1 = PlanetUiModel(
+        val planet1 = BookUiModel(
             id = UUID.randomUUID().toString(),
             description = description,
             title = title,
@@ -35,8 +31,9 @@ class RecyclerViewSampleViewModel:ViewModel() {
     }
 
 
-    fun onPlanetClick(uiModel:PlanetUiModel){
-    //    messageLiveData.value = uiModel.title
+    fun onPlanetClick(uiModel:BookUiModel){
+        messageLiveData.value = uiModel.title
+
     //    val oldList = requireCurrentList()
     //    val newList = oldList - uiModel
    //     itemsLiveData.value = newList
@@ -54,7 +51,7 @@ class RecyclerViewSampleViewModel:ViewModel() {
         itemsLiveData.value = newMutableList
     }
 
-    private fun requireCurrentList():List<PlanetUiModel>{
+    private fun requireCurrentList():List<BookUiModel>{
         return itemsLiveData.value?:throw IllegalStateException("items list is null")
     }
 
