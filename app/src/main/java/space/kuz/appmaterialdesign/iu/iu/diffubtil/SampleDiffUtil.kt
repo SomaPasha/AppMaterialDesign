@@ -6,8 +6,8 @@ import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 
 class SampleDiffUtil(
-    private val oldList:List<SampleListItem>,
-    private val newList:List<SampleListItem>
+    private val oldList:List<PlanetUiModel>,
+    private val newList:List<PlanetUiModel>
 ):DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
@@ -24,7 +24,6 @@ class SampleDiffUtil(
 
         return when (oldItem){
             is PlanetUiModel -> newItem is PlanetUiModel && oldItem.id == newItem.id
-            is AdvertisingUiModel -> newItem is AdvertisingUiModel &&  oldItem.id == newItem.id
             else -> throw  IllegalArgumentException("unknown item type")
         }
     }
@@ -35,7 +34,6 @@ class SampleDiffUtil(
 
         return when (oldItem){
             is PlanetUiModel -> newItem is PlanetUiModel && oldItem == newItem
-            is AdvertisingUiModel -> newItem is AdvertisingUiModel &&  oldItem== newItem
             else -> throw  IllegalArgumentException("unknown item type")
         }
     }

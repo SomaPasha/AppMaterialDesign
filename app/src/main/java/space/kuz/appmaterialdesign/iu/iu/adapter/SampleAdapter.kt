@@ -1,5 +1,6 @@
 package space.kuz.appmaterialdesign.iu.iu.adapter
 
+import android.text.Editable
 import android.view.*
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,7 @@ class SampleAdapter(
     private val onPlanetClickListener:((item:PlanetUiModel)->Unit),
 ):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    var items = emptyList<SampleListItem>()
+    var items = emptyList<PlanetUiModel>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater =  LayoutInflater.from(parent.context)
         return PlanetViewHolder(
@@ -42,13 +43,13 @@ class PlanetViewHolder (
     private  val onPlanetClickListener: (item:PlanetUiModel)-> Unit
     ):RecyclerView.ViewHolder(view){
     private  val planetImageView: ImageView = view.findViewById(R.id.image_view_planet)
-        private  val planetTextView: TextView = view.findViewById(R.id.text_view_planet)
-    private  val planetNameTextView: TextView = view.findViewById(R.id.text_view_planet_name)
+        private  val planetEditText: EditText = view.findViewById(R.id.edit_view_planet) as EditText
+    private  val planetNameEditText: EditText = view.findViewById(R.id.edit_view_planet_name) as EditText
 
     fun bind(planetUiModel:PlanetUiModel){
         Glide.with(planetImageView.context).load(planetUiModel.pictureUrl).into(planetImageView)
-        planetTextView.text = planetUiModel.description
-        planetNameTextView.text = planetUiModel.title
+        planetEditText.text = Editable.Factory.getInstance().newEditable(planetUiModel.description)
+        planetNameEditText.text=  Editable.Factory.getInstance().newEditable(planetUiModel.title)
         itemView.setOnClickListener{onPlanetClickListener(planetUiModel)}
     }
 

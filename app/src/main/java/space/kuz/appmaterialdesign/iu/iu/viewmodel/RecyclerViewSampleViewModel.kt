@@ -11,11 +11,10 @@ import kotlin.collections.ArrayList
 
 private const val bookPictureUrl= "https://cdn-icons-png.flaticon.com/512/43/43212.png"
 class RecyclerViewSampleViewModel:ViewModel() {
-    private  val itemsLiveData = MutableLiveData<List<SampleListItem>>(emptyList())
-
+    private  val itemsLiveData = MutableLiveData<List<PlanetUiModel>>(emptyList())
     private  val messageLiveData  = MutableLiveData<String>()
 
-    fun getItems():LiveData<List<SampleListItem>>{
+    fun getItems():LiveData<List<PlanetUiModel>>{
         return  itemsLiveData
     }
 
@@ -37,10 +36,10 @@ class RecyclerViewSampleViewModel:ViewModel() {
 
 
     fun onPlanetClick(uiModel:PlanetUiModel){
-        messageLiveData.value = uiModel.title
-        val oldList = requireCurrentList()
-        val newList = oldList - uiModel
-        itemsLiveData.value = newList
+    //    messageLiveData.value = uiModel.title
+    //    val oldList = requireCurrentList()
+    //    val newList = oldList - uiModel
+   //     itemsLiveData.value = newList
     }
 
     fun onItemMoved(from:Int,to:Int){
@@ -55,7 +54,7 @@ class RecyclerViewSampleViewModel:ViewModel() {
         itemsLiveData.value = newMutableList
     }
 
-    private fun requireCurrentList():List<SampleListItem>{
+    private fun requireCurrentList():List<PlanetUiModel>{
         return itemsLiveData.value?:throw IllegalStateException("items list is null")
     }
 

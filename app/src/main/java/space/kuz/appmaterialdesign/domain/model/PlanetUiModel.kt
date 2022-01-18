@@ -7,4 +7,4 @@ data class PlanetUiModel (
     val title: String,
     val description:String,
     val pictureUrl:String
-):SampleListItem
+)
