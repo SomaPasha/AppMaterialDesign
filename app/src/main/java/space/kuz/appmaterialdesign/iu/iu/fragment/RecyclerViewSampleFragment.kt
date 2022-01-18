@@ -6,7 +6,6 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.*
 import androidx.recyclerview.widget.*
-import okhttp3.internal.notify
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.iu.iu.adapter.SampleAdapter
 import space.kuz.appmaterialdesign.iu.iu.diffubtil.SampleDiffUtil
@@ -24,7 +23,7 @@ class RecyclerViewSampleFragment:Fragment() {
 
     private  val adapter by lazy {
         SampleAdapter(
-        onPlanetClickListener = {planet-> viewModel.onPlanetClick(planet)} ,
+        onBookClickListener = {book-> viewModel.onBookClick(book)} ,
         )
     }
 
@@ -64,9 +63,6 @@ class RecyclerViewSampleFragment:Fragment() {
     private fun observeViewModel() {
        viewModel.getItems().observe(viewLifecycleOwner){
            items->
-         //  adapter.items = items
-         //  adapter.notifyDataSetChanged()
-
 
            val sampleDiffUtil = SampleDiffUtil(
                oldList = adapter.items,

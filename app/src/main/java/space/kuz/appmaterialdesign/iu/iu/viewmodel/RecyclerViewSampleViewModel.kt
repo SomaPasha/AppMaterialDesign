@@ -19,22 +19,23 @@ class RecyclerViewSampleViewModel:ViewModel() {
     }
 
     fun addItem(title:String, description:String){
-        val planet1 = BookUiModel(
+        val bookExp = BookUiModel(
             id = UUID.randomUUID().toString(),
             description = description,
             title = title,
             pictureUrl = bookPictureUrl
         )
         val newMutableList = requireCurrentList().toMutableList()
-        newMutableList.add(planet1)
+        newMutableList.add(bookExp)
         itemsLiveData.value = newMutableList
     }
 
 
-    fun onPlanetClick(uiModel:BookUiModel){
+    fun onBookClick(uiModel:BookUiModel){
         messageLiveData.value = uiModel.title
 
     //    val oldList = requireCurrentList()
+    //    val newList = oldList - uiModel
     //    val newList = oldList - uiModel
    //     itemsLiveData.value = newList
     }

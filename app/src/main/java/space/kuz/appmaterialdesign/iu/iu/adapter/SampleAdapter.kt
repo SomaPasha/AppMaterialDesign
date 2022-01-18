@@ -10,7 +10,7 @@ import space.kuz.appmaterialdesign.domain.model.*
 
 
 class SampleAdapter(
-    private val onPlanetClickListener:((item:BookUiModel)->Unit),
+    private val onBookClickListener:((item:BookUiModel)->Unit),
 ):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     var items = emptyList<BookUiModel>()
@@ -18,7 +18,7 @@ class SampleAdapter(
         val inflater =  LayoutInflater.from(parent.context)
         return BookViewHolder(
                     view = inflater.inflate(R.layout.item_planet_view, parent,false) as View,
-                    onBookClickListener = onPlanetClickListener
+                    onBookClickListener = onBookClickListener
                 )
 
     }
