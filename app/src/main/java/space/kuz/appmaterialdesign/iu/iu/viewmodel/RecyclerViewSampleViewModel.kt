@@ -3,6 +3,7 @@ package space.kuz.appmaterialdesign.iu.iu.viewmodel
 import android.bluetooth.le.AdvertiseCallback
 import androidx.lifecycle.*
 import space.kuz.appmaterialdesign.domain.model.*
+import java.lang.IllegalStateException
 import java.util.*
 
     private const val marsPictureUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP1iF51wM3ndCT5hCOBUGbke2O__FrAOM-tA&usqp=CAU"
@@ -73,9 +74,9 @@ class RecyclerViewSampleViewModel:ViewModel() {
 
     fun onPlanetClick(uiModel:PlanetUiModel){
         messageLiveData.value = uiModel.name
-      //  val oldList = requireCurrentList()
-       // val newList = oldList - uiModel
-     //   itemsLiveData.value = newList
+        val oldList = requireCurrentList()
+        val newList = oldList - uiModel
+        itemsLiveData.value = newList
     }
 
     fun onAdvertisingClick(uiModel:AdvertisingUiModel){
@@ -83,9 +84,13 @@ class RecyclerViewSampleViewModel:ViewModel() {
     }
 
     fun onItemMoved(from:Int,to:Int){
-    //    val newMutableList = requireCurrentList().toMutableList()
-  //      Collections.swap(newMutableList,from,to)
-     //   itemsLiveData.value = newMutableList
+        val newMutableList = requireCurrentList().toMutableList()
+        Collections.swap(newMutableList,from,to)
+        itemsLiveData.value = newMutableList
+    }
+
+    private fun requireCurrentList():List<SampleListItem>{
+        return itemsLiveData.value?:throw IllegalStateException("items list is null")
     }
 
 

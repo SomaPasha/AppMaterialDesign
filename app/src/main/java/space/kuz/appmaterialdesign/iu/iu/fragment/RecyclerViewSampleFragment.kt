@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.*
 import okhttp3.internal.notify
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.iu.iu.adapter.SampleAdapter
+import space.kuz.appmaterialdesign.iu.iu.diffubtil.SampleDiffUtil
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.RecyclerViewSampleViewModel
 
 class RecyclerViewSampleFragment:Fragment() {
@@ -54,8 +55,17 @@ class RecyclerViewSampleFragment:Fragment() {
     private fun observeViewModel() {
        viewModel.getItems().observe(viewLifecycleOwner){
            items->
+         //  adapter.items = items
+         //  adapter.notifyDataSetChanged()
+
+
+           val sampleDiffUtil = SampleDiffUtil(
+               oldList = adapter.items,
+                newList = items,
+           )
+           val sampleDiffResult = DiffUtil.calculateDiff(sampleDiffUtil)
            adapter.items = items
-           adapter.notifyDataSetChanged()
+           sampleDiffResult.dispatchUpdatesTo(adapter)
        }
 
         viewModel.getMessage().observe(viewLifecycleOwner){message ->
