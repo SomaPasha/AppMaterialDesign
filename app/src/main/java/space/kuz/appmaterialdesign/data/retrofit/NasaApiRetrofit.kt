@@ -1,7 +1,6 @@
 package space.kuz.appmaterialdesign.data.retrofit
 
 import com.google.gson.GsonBuilder
-import com.google.gson.internal.GsonBuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

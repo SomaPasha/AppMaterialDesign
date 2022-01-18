@@ -51,7 +51,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <include layout="@layout/botton_sheet_layout" />
 
     <com.google.android.material.bottomappbar.BottomAppBar

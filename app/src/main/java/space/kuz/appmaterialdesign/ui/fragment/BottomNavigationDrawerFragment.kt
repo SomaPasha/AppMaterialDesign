@@ -1,4 +1,4 @@
-package space.kuz.appmaterialdesign.iu.iu.fragment
+package space.kuz.appmaterialdesign.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.bottom_menu_dialog, container, false)
     }
