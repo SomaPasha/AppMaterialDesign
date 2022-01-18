@@ -1,19 +1,22 @@
-/*package space.kuz.appmaterialdesign.iu.iu.adapter
+package space.kuz.appmaterialdesign.iu.iu.adapter
 
 import android.view.*
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import coil.target.ImageViewTarget
 import com.bumptech.glide.Glide
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.model.*
+import java.lang.IllegalStateException
+
+private const val viewTypePlanet = 0
+private const val viewTypeAdvertising  = 1
 
 class SampleAdapter(
     private val onPlanetClickListener:((item:PlanetUiModel)->Unit),
     private val  onAdvertisingClickListener:((item:AdvertisingUiModel)->Unit)
 ):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    val  items = emptyList<SampleListItem>()
+    var items = emptyList<SampleListItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater =  LayoutInflater.from(parent.context)
         return when(viewType){
@@ -26,7 +29,7 @@ class SampleAdapter(
             viewTypeAdvertising ->{
                 AdvertisingViewHolder(
                     view = inflater.inflate(R.layout.item_advertising_view, parent,false) as View,
-                    onPlanetClickListener = onPlanetClickListener
+                    onAdvertisingClickListener = onAdvertisingClickListener
                 )
             }
             else->{
@@ -36,13 +39,30 @@ class SampleAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+       if(getItemViewType(position) == viewTypePlanet){
+           holder as PlanetViewHolder
+           val planetUiModel = items[position] as PlanetUiModel
+           holder.bind(planetUiModel)
+       }else{
+           holder as AdvertisingViewHolder
+           val advertisingUiModel = items[position] as AdvertisingUiModel
+           holder.bind(advertisingUiModel)
+       }
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    return items.size
     }
 
+    @Suppress("MoveVariableDeclarationIntoWhen")
+    override fun getItemViewType(position: Int): Int {
+        val item = items[position]
+        return when(item){
+          is PlanetUiModel -> viewTypePlanet
+          is AdvertisingUiModel -> viewTypeAdvertising
+          else -> throw IllegalStateException("unknow view type")
+        }
+    }
 }
 
 class PlanetViewHolder (
@@ -58,4 +78,21 @@ class PlanetViewHolder (
         itemView.setOnClickListener{onPlanetClickListener(planetUiModel)}
     }
 
-    }*/
+    }
+
+
+
+class AdvertisingViewHolder (
+    view:View,
+    private  val onAdvertisingClickListener: (item: AdvertisingUiModel) -> Unit
+):RecyclerView.ViewHolder(view){
+    private  val advertisingTitleTextView: TextView = view.findViewById(R.id.text_view_advertising_title)
+    private  val advertisingDescriptionTextView: TextView = view.findViewById(R.id.text_view_advertising_description)
+
+    fun bind(advertisingUiModel:AdvertisingUiModel) {
+        advertisingTitleTextView.text = advertisingUiModel.title
+      advertisingDescriptionTextView.text = advertisingUiModel.description
+        itemView.setOnClickListener{onAdvertisingClickListener(advertisingUiModel)}
+    }
+
+}

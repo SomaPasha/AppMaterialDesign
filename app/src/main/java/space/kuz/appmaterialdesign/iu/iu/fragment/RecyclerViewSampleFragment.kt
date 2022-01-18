@@ -8,6 +8,7 @@ import androidx.fragment.app.*
 import androidx.recyclerview.widget.*
 import okhttp3.internal.notify
 import space.kuz.appmaterialdesign.R
+import space.kuz.appmaterialdesign.iu.iu.adapter.SampleAdapter
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.RecyclerViewSampleViewModel
 
 class RecyclerViewSampleFragment:Fragment() {
@@ -17,8 +18,10 @@ class RecyclerViewSampleFragment:Fragment() {
     private  lateinit var recyclerView: RecyclerView
 
     private  val adapter by lazy {
+        SampleAdapter(
         onPlanetClickListener = {planet-> viewModel.onPlanetClick(planet)} ,
         onAdvertisingClickListener  ={adversting-> viewModel.onAdvertisingClick(adversting)}
+        )
     }
 
     override fun onCreateView(
@@ -35,7 +38,16 @@ class RecyclerViewSampleFragment:Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        observeViewModel()
+
+       // val callback  = ItemDragTouchHelperCallback(
+        // onItemMove = { from, to ->
+        // viewModel.onItemMoved(from, to)
+        //},
+        // onItemSwiped = {position -> viewModel.onItemRemoved(position),
+        //)
+        // val touchHelper =ItemTouchHelper(callback)
+        // touchHelper.attachToRecyclerView(recycleView)
+       observeViewModel()
         viewModel.loadData()
     }
     @SuppressLint("NotifyDataChanged")

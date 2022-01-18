@@ -20,7 +20,7 @@ class RecyclerViewSampleViewModel:ViewModel() {
         return  messageLiveData
     }
 
-    loadData(){
+     fun loadData(){
         val planet1 = PlanetUiModel(
             id = UUID.randomUUID().toString(),
             pictureUrl = earthPictureUrl,
@@ -73,9 +73,9 @@ class RecyclerViewSampleViewModel:ViewModel() {
 
     fun onPlanetClick(uiModel:PlanetUiModel){
         messageLiveData.value = uiModel.name
-        val oldList = requireCurrentList()
-        val newList = oldList - uiModel
-        itemsLiveData.value = newList
+      //  val oldList = requireCurrentList()
+       // val newList = oldList - uiModel
+     //   itemsLiveData.value = newList
     }
 
     fun onAdvertisingClick(uiModel:AdvertisingUiModel){
@@ -83,9 +83,9 @@ class RecyclerViewSampleViewModel:ViewModel() {
     }
 
     fun onItemMoved(from:Int,to:Int){
-        val newMutableList = requireCurrentList().toMutableList()
-        Collections.swap(newMutableList,from,to)
-        itemsLiveData.value = newMutableList
+    //    val newMutableList = requireCurrentList().toMutableList()
+  //      Collections.swap(newMutableList,from,to)
+     //   itemsLiveData.value = newMutableList
     }
 
 
