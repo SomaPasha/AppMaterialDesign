@@ -11,6 +11,7 @@ import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.iu.iu.adapter.SampleAdapter
 import space.kuz.appmaterialdesign.iu.iu.diffubtil.SampleDiffUtil
 import space.kuz.appmaterialdesign.iu.iu.viewmodel.RecyclerViewSampleViewModel
+import space.kuz.appmaterialdesign.transformer.ItemDragTouchHelperCallback
 
 class RecyclerViewSampleFragment:Fragment() {
 
@@ -39,15 +40,16 @@ class RecyclerViewSampleFragment:Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        val callback  = ItemDragTouchHelperCallback(
+         onItemMove = { from, to ->
+         viewModel.onItemMoved(from, to)
+        },
+         onItemSwiped = {position -> viewModel.onItemRemoved(position)},
+        )
+         val touchHelper =ItemTouchHelper(callback)
+         touchHelper.attachToRecyclerView(recyclerView)
 
-       // val callback  = ItemDragTouchHelperCallback(
-        // onItemMove = { from, to ->
-        // viewModel.onItemMoved(from, to)
-        //},
-        // onItemSwiped = {position -> viewModel.onItemRemoved(position),
-        //)
-        // val touchHelper =ItemTouchHelper(callback)
-        // touchHelper.attachToRecyclerView(recycleView)
+
        observeViewModel()
         viewModel.loadData()
     }

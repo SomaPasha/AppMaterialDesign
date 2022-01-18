@@ -4,6 +4,7 @@ import android.bluetooth.le.AdvertiseCallback
 import androidx.lifecycle.*
 import space.kuz.appmaterialdesign.domain.model.*
 import java.lang.IllegalStateException
+import java.text.ParsePosition
 import java.util.*
 
     private const val marsPictureUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP1iF51wM3ndCT5hCOBUGbke2O__FrAOM-tA&usqp=CAU"
@@ -86,6 +87,12 @@ class RecyclerViewSampleViewModel:ViewModel() {
     fun onItemMoved(from:Int,to:Int){
         val newMutableList = requireCurrentList().toMutableList()
         Collections.swap(newMutableList,from,to)
+        itemsLiveData.value = newMutableList
+    }
+
+    fun onItemRemoved(position: Int){
+        val newMutableList = requireCurrentList().toMutableList()
+        newMutableList.removeAt(position)
         itemsLiveData.value = newMutableList
     }
 
