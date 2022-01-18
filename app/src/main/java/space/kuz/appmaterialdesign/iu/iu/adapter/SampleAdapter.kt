@@ -8,8 +8,6 @@ import com.bumptech.glide.Glide
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.model.*
 
-//private const val viewTypePlanet = 0
-//private const val viewTypeAdvertising  = 1
 
 class SampleAdapter(
     private val onPlanetClickListener:((item:BookUiModel)->Unit),
@@ -18,15 +16,15 @@ class SampleAdapter(
     var items = emptyList<BookUiModel>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater =  LayoutInflater.from(parent.context)
-        return PlanetViewHolder(
+        return BookViewHolder(
                     view = inflater.inflate(R.layout.item_planet_view, parent,false) as View,
-                    onPlanetClickListener = onPlanetClickListener
+                    onBookClickListener = onPlanetClickListener
                 )
 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-           holder as PlanetViewHolder
+           holder as BookViewHolder
            val planetUiModel = items[position] as BookUiModel
            holder.bind(planetUiModel)
     }
@@ -37,22 +35,24 @@ class SampleAdapter(
 
 }
 
-class PlanetViewHolder (
+class BookViewHolder (
     view:View,
-    private  val onPlanetClickListener: (item:BookUiModel)-> Unit
+    private  val onBookClickListener: (item:BookUiModel)-> Unit
     ):RecyclerView.ViewHolder(view){
-    private  val planetImageView: ImageView = view.findViewById(R.id.image_view_planet)
-        private  val planetEditText: EditText = view.findViewById(R.id.edit_view_planet) as EditText
-    private  val planetNameEditText: EditText = view.findViewById(R.id.edit_view_planet_name) as EditText
+    private  val bookImageView: ImageView = view.findViewById(R.id.image_view_book)
+        private  val bookEditText: EditText = view.findViewById(R.id.edit_view_book) as EditText
+    private  val bookNameEditText: EditText = view.findViewById(R.id.edit_view_book_name) as EditText
 
     fun bind(bookUiModel:BookUiModel){
-        Glide.with(planetImageView.context).load(bookUiModel.pictureUrl).into(planetImageView)
-        planetEditText.text = Editable.Factory.getInstance().newEditable(bookUiModel.description)
-        planetNameEditText.text=  Editable.Factory.getInstance().newEditable(bookUiModel.title)
+        Glide.with(bookImageView.context).load(bookUiModel.pictureUrl).into(bookImageView)
+        bookEditText.text = Editable.Factory.getInstance().newEditable(bookUiModel.description)
+        bookNameEditText.text=  Editable.Factory.getInstance().newEditable(bookUiModel.title)
+        bookEditText.isEnabled= false
+        bookNameEditText.isEnabled = false
         itemView.setOnClickListener{
-            onPlanetClickListener(bookUiModel)
-            planetEditText.isEnabled =  !planetEditText.isEnabled
-            planetNameEditText.isEnabled = !planetNameEditText.isEnabled
+            onBookClickListener(bookUiModel)
+            bookEditText.isEnabled =  !bookEditText.isEnabled
+            bookNameEditText.isEnabled = !bookNameEditText.isEnabled
         }
     }
 
