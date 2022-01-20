@@ -9,7 +9,7 @@ import androidx.core.text.toSpannable
 import androidx.lifecycle.*
 import space.kuz.appmaterialdesign.R
 
-private  const val initialTextForSpan = "It is text for span. * for image Span"
+private  const val initialTextForSpan = "Измени это - |Хи-хи|"
 
 class TextSampleViewModel :ViewModel() {
 
@@ -25,7 +25,7 @@ class TextSampleViewModel :ViewModel() {
 
     fun onBackgroundColorSpanClicked(){
         val spannable = initialTextForSpan.toSpannable()
-        spannable.setSpan(BackgroundColorSpan(Color.CYAN),3,5,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(BackgroundColorSpan(Color.CYAN),13,20,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableTextLiveData.value = spannable
     }
 
@@ -37,7 +37,7 @@ class TextSampleViewModel :ViewModel() {
 
         }
         val spannable = initialTextForSpan.toSpannable()
-        spannable.setSpan(clickableSpan, 3,5,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(clickableSpan, 13,20,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableTextLiveData.value = spannable
     }
 
@@ -45,7 +45,7 @@ class TextSampleViewModel :ViewModel() {
         val imageSpan = ImageSpan(context, R.drawable.fly_image)
 
         val spannable = initialTextForSpan.toSpannable()
-        spannable.setSpan(imageSpan, 3,5,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(imageSpan, 13,20,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableTextLiveData.value = spannable
     }
 

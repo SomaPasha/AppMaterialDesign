@@ -1,5 +1,6 @@
 package space.kuz.appmaterialdesign.iu.iu.fragment
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.method.LinkMovementMethod
@@ -15,6 +16,7 @@ class TextSampleFragment:Fragment() {
 
     private lateinit var spannableSampleTextView: TextView
     private lateinit var radioGroup: RadioGroup
+    private  lateinit var boldTextView: TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,8 +28,12 @@ class TextSampleFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        boldTextView = view.findViewById(R.id.text_view_title_bold)
         spannableSampleTextView = view.findViewById(R.id.text_view_spanned_text)
         radioGroup = view.findViewById(R.id.radio_group_span)
+
+        var customFont = Typeface.createFromAsset(requireActivity().assets, "fonts/Boncegro.otf")
+        boldTextView.setTypeface(customFont)
 
         viewModel.getSpannableText().observe(viewLifecycleOwner){text ->
             spannableSampleTextView.text = text
