@@ -64,13 +64,13 @@ class DailyImageFragment : Fragment() {
 
         fabAdd = view.findViewById(R.id.fab)
         fabAdd.setOnClickListener {
-            val newTheme = when (sharedPreferences.getInt(MainActivity().SAVE_THEME, 0)) {
+            val newTheme = when (sharedPreferences.getInt(MainActivity().saveTheme, 0)) {
                 R.style.ThemeOne -> R.style.ThemeTwo
                 R.style.ThemeTwo -> R.style.ThemeOne
                 else -> throw IllegalStateException("Ошибка")
             }
             var ed = sharedPreferences.edit()
-            ed.putInt(MainActivity().SAVE_THEME, newTheme)
+            ed.putInt(MainActivity().saveTheme, newTheme)
             ed.commit()
             requireActivity().recreate()
         }

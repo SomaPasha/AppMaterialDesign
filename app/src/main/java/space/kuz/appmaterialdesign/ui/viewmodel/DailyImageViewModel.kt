@@ -2,7 +2,6 @@ package space.kuz.appmaterialdesign.ui.viewmodel
 
 import android.content.Intent
 import android.net.Uri
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
