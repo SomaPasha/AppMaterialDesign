@@ -36,6 +36,9 @@ android {
     defaultConfig{
         buildConfigField("String","NASA_API_KEY", nasaApiKey)
     }
+    viewBinding{
+        enabled true
+    }
 }
 
 dependencies {

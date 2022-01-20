@@ -20,10 +20,7 @@ import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 class DailyImageFragment : Fragment() {
 
     private val viewModel by viewModels<DailyImageViewModel>()
-
     private lateinit var dailyImageView: ImageView
-    private lateinit var inputLayoutWiki: com.google.android.material.textfield.TextInputLayout
-    private lateinit var inputEditTextWiki: com.google.android.material.textfield.TextInputEditText
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetDescription: TextView
     private lateinit var bottomSheetDescriptionHeader: TextView
