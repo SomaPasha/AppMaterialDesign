@@ -56,6 +56,15 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                     transaction.addToBackStack(null)
                     transaction.commit()
                 }
+                R.id.navigation_five ->{
+                        val fragment = TextSampleFragment()
+                        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                        transaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right)
+                        transaction.replace(R.id.fragment_daily, fragment)
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+
+                }
             }
             true
         }
