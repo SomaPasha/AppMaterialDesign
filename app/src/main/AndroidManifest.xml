@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppMaterialDesign">
+
+        android:theme="@style/Theme.AppMaterialDesign.OldSplash">
         <activity
             android:name=".iu.iu.MainActivity"
             android:exported="true">
