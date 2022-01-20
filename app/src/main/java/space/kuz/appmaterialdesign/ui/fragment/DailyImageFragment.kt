@@ -1,13 +1,11 @@
 package space.kuz.appmaterialdesign.ui.fragment
 
 import android.content.*
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.*
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -16,21 +14,23 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.*
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
+import space.kuz.appmaterialdesign.ui.MainActivity
 import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
-
     private lateinit var sharedPreferences: SharedPreferences
-    var SAVE_THEME = "Save Theme"
+
     private val viewModel by viewModels<DailyImageViewModel>()
+
     private lateinit var dailyImageView: ImageView
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
-    private lateinit var inputLayoutWiki:TextInputLayout
+    private lateinit var inputLayoutWiki: TextInputLayout
     private lateinit var inputEditTextWiki: TextInputEditText
     private lateinit var bottomSheetDescription: TextView
     private lateinit var bottomSheetDescriptionHeader: TextView
     private lateinit var fabAdd: FloatingActionButton
     private lateinit var chipHd: Chip
+
     private var checkHd: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,34 +48,37 @@ class DailyImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
+
         dailyImageView = view.findViewById(R.id.image_view_nasa_image)
         bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
         bottomSheetDescriptionHeader = view.findViewById(R.id.bottom_sheet_description_header)
         inputLayoutWiki = view.findViewById(R.id.input_layout_wiki)
         inputEditTextWiki = view.findViewById(R.id.input_edit_text_wiki)
+
         chipHd = view.findViewById(R.id.chip_hd)
         chipHd.setOnClickListener {
-            checkHd=!checkHd
+            checkHd = !checkHd
             viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
         }
+
         fabAdd = view.findViewById(R.id.fab)
-
-        sharedPreferences = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
-
         fabAdd.setOnClickListener {
-            val newTheme = when (sharedPreferences.getInt(SAVE_THEME,0)) {
+            val newTheme = when (sharedPreferences.getInt(MainActivity().SAVE_THEME, 0)) {
                 R.style.ThemeOne -> R.style.ThemeTwo
                 R.style.ThemeTwo -> R.style.ThemeOne
                 else -> throw IllegalStateException("Ошибка")
             }
-            var  ed = sharedPreferences.edit()
-            ed.putInt(SAVE_THEME,newTheme)
+            var ed = sharedPreferences.edit()
+            ed.putInt(MainActivity().SAVE_THEME, newTheme)
             ed.commit()
             requireActivity().recreate()
         }
+
         inputLayoutWiki.setEndIconOnClickListener {
             startActivity(viewModel.openWiki(inputEditTextWiki.text.toString()))
         }
+
         startBottomSheetBehavior(view)
         setBottomAppBar(view)
     }
@@ -121,13 +124,16 @@ class DailyImageFragment : Fragment() {
                 val serverResponseData = dailyImage.serverResponseData
                 val planation = serverResponseData.explanation
                 val planationHead = serverResponseData.title
+
                 bottomSheetDescription.text = planation
                 bottomSheetDescriptionHeader.text = planationHead
-                val url=if (checkHd) {
+
+                val url = if (checkHd) {
                     serverResponseData.url
                 } else {
                     serverResponseData.hdurl
                 }
+
                 if (!url.isNullOrEmpty()) {
                     dailyImageView.load(url) {
                         lifecycle(this@DailyImageFragment)
@@ -153,6 +159,7 @@ class DailyImageFragment : Fragment() {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+
             android.R.id.home -> {
                 val activity = requireActivity()
                 BottomNavigationDrawerFragment().show(activity.supportFragmentManager, "tag")

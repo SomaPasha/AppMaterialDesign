@@ -8,8 +8,10 @@ import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.ui.fragment.DailyImageFragment
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var sharedPreferences: SharedPreferences
     var SAVE_THEME = "Save Theme"
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreferences = getPreferences(MODE_PRIVATE)
