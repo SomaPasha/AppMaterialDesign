@@ -1,12 +1,13 @@
 package space.kuz.appmaterialdesign.ui.fragment
 
-import android.content.Intent
+import android.content.*
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.*
 import coil.api.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -19,14 +20,17 @@ import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
 
+    private lateinit var sharedPreferences: SharedPreferences
+    var SAVE_THEME = "Save Theme"
     private val viewModel by viewModels<DailyImageViewModel>()
     private lateinit var dailyImageView: ImageView
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private lateinit var inputLayoutWiki:TextInputLayout
+    private lateinit var inputEditTextWiki: TextInputEditText
     private lateinit var bottomSheetDescription: TextView
     private lateinit var bottomSheetDescriptionHeader: TextView
     private lateinit var fabAdd: FloatingActionButton
     private lateinit var chipHd: Chip
-
     private var checkHd: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,24 +55,26 @@ class DailyImageFragment : Fragment() {
         inputEditTextWiki = view.findViewById(R.id.input_edit_text_wiki)
         chipHd = view.findViewById(R.id.chip_hd)
         chipHd.setOnClickListener {
-            if (chipHd.isChecked) {
-                checkHd = false
-                viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
-            } else {
-                checkHd = true
-                viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
-            }
+            checkHd=!checkHd
+            viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
         }
         fabAdd = view.findViewById(R.id.fab)
+
+        sharedPreferences = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
+
         fabAdd.setOnClickListener {
-            Toast.makeText(context, "ADD", Toast.LENGTH_SHORT).show()
+            val newTheme = when (sharedPreferences.getInt(SAVE_THEME,0)) {
+                R.style.ThemeOne -> R.style.ThemeTwo
+                R.style.ThemeTwo -> R.style.ThemeOne
+                else -> throw IllegalStateException("Ошибка")
+            }
+            var  ed = sharedPreferences.edit()
+            ed.putInt(SAVE_THEME,newTheme)
+            ed.commit()
+            requireActivity().recreate()
         }
         inputLayoutWiki.setEndIconOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            val url = "https://en.wikipedia.org/wiki/${inputEditTextWiki.text.toString()}"
-            val uri = Uri.parse(url)
-            intent.data = uri
-            startActivity(intent)
+            startActivity(viewModel.openWiki(inputEditTextWiki.text.toString()))
         }
         startBottomSheetBehavior(view)
         setBottomAppBar(view)
@@ -76,7 +82,8 @@ class DailyImageFragment : Fragment() {
 
     private fun startBottomSheetBehavior(view: View) {
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+
+        var callback = object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_DRAGGING -> Toast.makeText(
@@ -103,7 +110,9 @@ class DailyImageFragment : Fragment() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 //todo
             }
-        })
+        }
+
+        bottomSheetBehavior.addBottomSheetCallback(callback)
     }
 
     private fun renderData(dailyImage: DailyImage) {
