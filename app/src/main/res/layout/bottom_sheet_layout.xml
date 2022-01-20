@@ -5,30 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/color_sea_wave"
     app:behavior_hideable="true"
     app:behavior_peekHeight="100dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <View
-        android:id="@+id/bottom_sheet_line"
-        style="@style/bottom_sheet_line_style"
-        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/bottom_sheet_description_header"
         style="@style/bottom_sheet_text_view_style"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_line"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="Two Clusters and a Comet" />
 
     <TextView
         android:id="@+id/bottom_sheet_description"
         style="@style/bottom_sheet_text_view_style"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="This lovely starfield spans some four full moons." />
 </androidx.constraintlayout.widget.ConstraintLayout>

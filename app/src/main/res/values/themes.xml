@@ -57,6 +57,7 @@
         <item name="navigationIcon">@drawable/ic_baseline_dehaze_24</item>
     </style>
 
+
     <style name="fab_style">
         <item name="android:clickable">true</item>
         <item name="android:backgroundTint">?themeColorPrimary</item>
