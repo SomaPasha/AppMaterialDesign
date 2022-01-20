@@ -17,6 +17,7 @@ import java.util.*
 
 class AnimationFragment : Fragment()
 {
+
     private lateinit var binding :FragmentAnimationBinding
     private lateinit var  animator: ObjectAnimator
     private lateinit var  animatorValue: ValueAnimator
