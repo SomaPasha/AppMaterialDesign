@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
         setTheme(appThemeSaved.getSavedTheme(this))
 
         super.onCreate(savedInstanceState)
