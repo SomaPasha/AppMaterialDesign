@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.*
+import kotlinx.coroutines.flow.callbackFlow
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.ui.*
@@ -58,7 +59,8 @@ class DailyImageFragment : Fragment() {
         chipHd = view.findViewById(R.id.chip_hd)
         chipHd.setOnClickListener {
             checkHd = !checkHd
-            viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
+            renderData(viewModel.getImageData().value as DailyImage)
+            //viewModel.getImageData().observe(viewLifecycleOwner, {dailyImage -> renderData(dailyImage)})
         }
 
         fabAdd = view.findViewById(R.id.fab)
@@ -111,7 +113,7 @@ class DailyImageFragment : Fragment() {
         bottomSheetBehavior.addBottomSheetCallback(callback)
     }
 
-    private fun renderData(dailyImage: DailyImage) {
+   private  fun renderData(dailyImage: DailyImage) {
         when (dailyImage) {
             is DailyImage.Success -> {
                 val serverResponseData = dailyImage.serverResponseData
