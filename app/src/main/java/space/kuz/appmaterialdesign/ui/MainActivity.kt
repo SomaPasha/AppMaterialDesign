@@ -9,15 +9,13 @@ import space.kuz.appmaterialdesign.ui.fragment.DailyImageFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var sharedPreferences: SharedPreferences
-    val saveTheme = "SAVE_THEME"
+    private val appThemeSaved by lazy { AppThemePreferenceDelegate() }
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
-        sharedPreferences = getPreferences(MODE_PRIVATE)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
-        setTheme(sharedPreferences.getInt(saveTheme,0))
+        setTheme(appThemeSaved.getSavedTheme(this))
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

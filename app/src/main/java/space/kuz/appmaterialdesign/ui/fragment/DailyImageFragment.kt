@@ -14,11 +14,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.*
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
-import space.kuz.appmaterialdesign.ui.MainActivity
+import space.kuz.appmaterialdesign.ui.*
 import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
-    private lateinit var sharedPreferences: SharedPreferences
+    private val appThemeSaved by lazy { AppThemePreferenceDelegate() }
 
     private val viewModel by viewModels<DailyImageViewModel>()
 
@@ -48,7 +48,6 @@ class DailyImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
 
         dailyImageView = view.findViewById(R.id.image_view_nasa_image)
         bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
@@ -64,14 +63,8 @@ class DailyImageFragment : Fragment() {
 
         fabAdd = view.findViewById(R.id.fab)
         fabAdd.setOnClickListener {
-            val newTheme = when (sharedPreferences.getInt(MainActivity().saveTheme, 0)) {
-                R.style.ThemeOne -> R.style.ThemeTwo
-                R.style.ThemeTwo -> R.style.ThemeOne
-                else -> throw IllegalStateException("Ошибка")
-            }
-            var ed = sharedPreferences.edit()
-            ed.putInt(MainActivity().saveTheme, newTheme)
-            ed.commit()
+            val newTheme =appThemeSaved.savedThemeToStyleId(appThemeSaved.getSavedTheme(requireActivity()))
+                appThemeSaved.setSavedTheme(requireActivity(),newTheme)
             requireActivity().recreate()
         }
 
