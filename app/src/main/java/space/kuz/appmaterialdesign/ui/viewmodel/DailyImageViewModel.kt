@@ -30,7 +30,7 @@ class DailyImageViewModel(
         return  intent
     }
 
-    private fun sendServerRequest() {
+     fun sendServerRequest() {
         liveDataForViewToObserve.value = DailyImage.Loading(null)
         val apiKey = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {

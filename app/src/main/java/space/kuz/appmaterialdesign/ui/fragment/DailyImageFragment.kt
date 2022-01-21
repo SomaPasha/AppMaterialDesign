@@ -57,9 +57,11 @@ class DailyImageFragment : Fragment() {
         inputEditTextWiki = view.findViewById(R.id.input_edit_text_wiki)
 
         chipHd = view.findViewById(R.id.chip_hd)
+        val image= viewModel.getImageData().value as DailyImage
         chipHd.setOnClickListener {
             checkHd = !checkHd
-            renderData(viewModel.getImageData().value as DailyImage)
+            viewModel.sendServerRequest()
+            renderData(image)
             //viewModel.getImageData().observe(viewLifecycleOwner, {dailyImage -> renderData(dailyImage)})
         }
 
