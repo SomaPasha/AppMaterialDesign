@@ -1,12 +1,7 @@
 package space.kuz.appmaterialdesign.transformer
 
-import android.content.Context
 import android.view.View
-import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
-import space.kuz.appmaterialdesign.iu.iu.MainActivity
-import space.kuz.appmaterialdesign.iu.iu.fragment.UniverseFragment
-
 
 class ZoomOutPageTransformer() : ViewPager2.PageTransformer {
 

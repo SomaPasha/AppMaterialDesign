@@ -3,9 +3,6 @@ package space.kuz.appmaterialdesign.iu.iu.adapter
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import space.kuz.appmaterialdesign.domain.entity.UniversePageType
-import space.kuz.appmaterialdesign.iu.iu.fragment.DailyImageFragment
-import space.kuz.appmaterialdesign.iu.iu.fragment.EarthFragment
-import space.kuz.appmaterialdesign.iu.iu.fragment.UniversePageFragment
 
 
 interface  UniverseScreen{

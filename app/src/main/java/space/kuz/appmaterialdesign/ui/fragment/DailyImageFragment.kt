@@ -22,8 +22,6 @@ class DailyImageFragment : Fragment() {
     private val appThemeSaved by lazy { AppThemePreferenceDelegate() }
 
     private val viewModel by viewModels<DailyImageViewModel>()
-    private lateinit var binding: FragmentDailyImageBinding
-
 
     private lateinit var dailyImageView: ImageView
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
