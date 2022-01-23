@@ -1,5 +1,7 @@
 package space.kuz.appmaterialdesign.ui.viewmodel
 
+import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +22,15 @@ class DailyImageViewModel(
         return liveDataForViewToObserve
     }
 
-    private fun sendServerRequest() {
+    fun openWiki(word:String): Intent{
+        val intent = Intent(Intent.ACTION_VIEW)
+        val url = "https://en.wikipedia.org/wiki/${word}"
+        val uri = Uri.parse(url)
+        intent.data = uri
+        return  intent
+    }
+
+     fun sendServerRequest() {
         liveDataForViewToObserve.value = DailyImage.Loading(null)
         val apiKey = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {

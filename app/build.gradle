@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'io.gitlab.arturbosch.detekt'
 }
-
 android {
     compileSdk 31
 
@@ -37,10 +36,10 @@ android {
     defaultConfig{
         buildConfigField("String","NASA_API_KEY", nasaApiKey)
     }
+
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'

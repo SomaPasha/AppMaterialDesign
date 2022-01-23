@@ -5,23 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/image_view_nasa_image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/black"
-            android:scaleType="centerInside"
-            app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            />
+            style="@style/image_view_style"
+            tools:ignore="MissingConstraints" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_hd"
@@ -61,25 +52,14 @@
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include layout="@layout/botton_sheet_layout" />
+    <include layout="@layout/bottom_sheet_layout" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:backgroundTint="#830808"
-        app:fabAlignmentMode="end"
-        app:navigationIcon="@drawable/ic_baseline_dehaze_24" />
+        style="@style/input_layout_wiki_style" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#0088FF"
-        android:clickable="true"
-        app:layout_anchor="@id/bottom_app_bar"
-        app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
-        app:tint="#FFFFFF" />
+        style="@style/fab_style" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

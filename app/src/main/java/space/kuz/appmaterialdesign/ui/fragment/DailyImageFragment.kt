@@ -1,7 +1,6 @@
 package space.kuz.appmaterialdesign.ui.fragment
 
-import android.content.Intent
-import android.net.Uri
+import android.content.*
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -13,18 +12,21 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.*
+import kotlinx.coroutines.flow.callbackFlow
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
+import space.kuz.appmaterialdesign.ui.*
 import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
+    private val appThemeSaved by lazy { AppThemePreferenceDelegate() }
 
     private val viewModel by viewModels<DailyImageViewModel>()
 
     private lateinit var dailyImageView: ImageView
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var inputLayoutWiki: TextInputLayout
     private lateinit var inputEditTextWiki: TextInputEditText
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetDescription: TextView
     private lateinit var bottomSheetDescriptionHeader: TextView
     private lateinit var fabAdd: FloatingActionButton
@@ -47,39 +49,41 @@ class DailyImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         dailyImageView = view.findViewById(R.id.image_view_nasa_image)
         bottomSheetDescription = view.findViewById(R.id.bottom_sheet_description)
         bottomSheetDescriptionHeader = view.findViewById(R.id.bottom_sheet_description_header)
         inputLayoutWiki = view.findViewById(R.id.input_layout_wiki)
         inputEditTextWiki = view.findViewById(R.id.input_edit_text_wiki)
+
         chipHd = view.findViewById(R.id.chip_hd)
+        val image= viewModel.getImageData().value as DailyImage
         chipHd.setOnClickListener {
-            if (chipHd.isChecked) {
-                checkHd = false
-                viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
-            } else {
-                checkHd = true
-                viewModel.getImageData().observe(this, { dailyImage -> renderData(dailyImage) })
-            }
+            checkHd = !checkHd
+            viewModel.sendServerRequest()
+            renderData(image)
+            //viewModel.getImageData().observe(viewLifecycleOwner, {dailyImage -> renderData(dailyImage)})
         }
+
         fabAdd = view.findViewById(R.id.fab)
         fabAdd.setOnClickListener {
-            Toast.makeText(context, "ADD", Toast.LENGTH_SHORT).show()
+            val newTheme =appThemeSaved.savedThemeToStyleId(appThemeSaved.getSavedTheme(requireActivity()))
+                appThemeSaved.setSavedTheme(requireActivity(),newTheme)
+            requireActivity().recreate()
         }
+
         inputLayoutWiki.setEndIconOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            val url = "https://en.wikipedia.org/wiki/${inputEditTextWiki.text.toString()}"
-            val uri = Uri.parse(url)
-            intent.data = uri
-            startActivity(intent)
+            startActivity(viewModel.openWiki(inputEditTextWiki.text.toString()))
         }
+
         startBottomSheetBehavior(view)
         setBottomAppBar(view)
     }
 
     private fun startBottomSheetBehavior(view: View) {
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+
+        var callback = object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_DRAGGING -> Toast.makeText(
@@ -106,22 +110,27 @@ class DailyImageFragment : Fragment() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 //todo
             }
-        })
+        }
+
+        bottomSheetBehavior.addBottomSheetCallback(callback)
     }
 
-    private fun renderData(dailyImage: DailyImage) {
+   private  fun renderData(dailyImage: DailyImage) {
         when (dailyImage) {
             is DailyImage.Success -> {
                 val serverResponseData = dailyImage.serverResponseData
                 val planation = serverResponseData.explanation
                 val planationHead = serverResponseData.title
+
                 bottomSheetDescription.text = planation
                 bottomSheetDescriptionHeader.text = planationHead
-                val url=if (checkHd) {
+
+                val url = if (checkHd) {
                     serverResponseData.url
                 } else {
                     serverResponseData.hdurl
                 }
+
                 if (!url.isNullOrEmpty()) {
                     dailyImageView.load(url) {
                         lifecycle(this@DailyImageFragment)
@@ -147,6 +156,7 @@ class DailyImageFragment : Fragment() {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+
             android.R.id.home -> {
                 val activity = requireActivity()
                 BottomNavigationDrawerFragment().show(activity.supportFragmentManager, "tag")

@@ -2,4 +2,5 @@
 <resources>
     <string name="search_wiki">Search Wiki</string>
     <string name="wiki_helper_text">Help text</string>
+    <string name="theme_two">Theme Two</string>
 </resources>

@@ -2,4 +2,7 @@
     <string name="app_name">AppMaterialDesign</string>
     <string name="search_wiki">Search Wiki</string>
     <string name="wiki_helper_text">Help text</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="theme_one">Theme One</string>
+    <string name="theme_two">Theme Two</string>
 </resources>

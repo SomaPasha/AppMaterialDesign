@@ -6,5 +6,5 @@ import space.kuz.appmaterialdesign.domain.entity.NASAImageResponse
 
 interface NasaApiService {
     @GET("planetary/apod")
-    fun getImage(@Query("api_key") apiKey:String): Call<NASAImageResponse>
+    fun getImage(@Query("api_key") apiKey: String): Call<NASAImageResponse>
 }

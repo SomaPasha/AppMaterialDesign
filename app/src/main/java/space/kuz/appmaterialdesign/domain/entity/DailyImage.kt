@@ -8,4 +8,5 @@ sealed class DailyImage {
 
     data class Loading(val progress: Int?) : DailyImage()
 
+
 }
