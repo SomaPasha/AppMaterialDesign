@@ -2,6 +2,7 @@ package space.kuz.appmaterialdesign.ui.fragment
 
 import android.content.*
 import android.os.Bundle
+import android.text.Html
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.ui.*
 import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
+import java.util.concurrent.atomic.AtomicBoolean
 
 class DailyImageFragment : Fragment() {
     private val appThemeSaved by lazy { AppThemePreferenceDelegate(requireContext()) }
@@ -31,7 +33,7 @@ class DailyImageFragment : Fragment() {
     private lateinit var fabAdd: FloatingActionButton
     private lateinit var chipHd: Chip
 
-    private var checkHd: Boolean = true
+    private var  checkHd: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +60,9 @@ class DailyImageFragment : Fragment() {
         chipHd = view.findViewById(R.id.chip_hd)
         val image= viewModel.getImageData().value as DailyImage
         chipHd.setOnClickListener {
-            checkHd = !checkHd
-            viewModel.sendServerRequest()
             renderData(image)
-            //viewModel.getImageData().observe(viewLifecycleOwner, {dailyImage -> renderData(dailyImage)})
+            checkHd = !checkHd
+            // val imageData:DailyImage =  viewModel.getImageData().observe(viewLifecycleOwner, {dailyImage -> renderData(dailyImage)})
         }
 
         fabAdd = view.findViewById(R.id.fab)
@@ -125,6 +126,7 @@ class DailyImageFragment : Fragment() {
 
                 bottomSheetDescription.text = planation
                 bottomSheetDescriptionHeader.text = planationHead
+
 
                 val url = if (checkHd) {
                     serverResponseData.url

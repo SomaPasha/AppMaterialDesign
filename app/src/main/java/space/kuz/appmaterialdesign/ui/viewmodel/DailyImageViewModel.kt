@@ -23,6 +23,16 @@ class DailyImageViewModel(
         return uri
     }
 
+
+    fun sendServerRequest2() {
+        liveDataForViewToObserve.value = DailyImage.Loading(null)
+        val apiKey = BuildConfig.NASA_API_KEY
+        if (apiKey.isBlank()) {
+            DailyImage.Error(Throwable("Нужен API ключ"))
+        } else {
+            executeImageRequest(apiKey)
+        }
+    }
     fun sendServerRequest() {
         liveDataForViewToObserve.value = DailyImage.Loading(null)
         val apiKey = BuildConfig.NASA_API_KEY
