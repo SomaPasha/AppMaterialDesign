@@ -1,4 +1,5 @@
 package space.kuz.appmaterialdesign.ui
+
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import space.kuz.appmaterialdesign.R
@@ -8,7 +9,9 @@ private const val APP_THEME_KEY = "APP_THEME_KEY"
 private const val ONE_THEME = R.style.ThemeOne
 private const val TWO_THEME = R.style.ThemeTwo
 
-class AppThemePreferenceDelegate {
+class AppThemePreferenceDelegate(context: Context) {
+
+    private val theme = context.getSharedPreferences(NAME_SHARED_PREFERENCE, AppCompatActivity.MODE_PRIVATE)
 
     fun savedThemeToStyleId(savedThemeNumber: Int): Int {
         return when (savedThemeNumber) {
@@ -18,13 +21,11 @@ class AppThemePreferenceDelegate {
         }
     }
 
-    fun getSavedTheme(context: Context): Int {
-        val preferences = context.getSharedPreferences(NAME_SHARED_PREFERENCE, AppCompatActivity.MODE_PRIVATE)
-        return preferences.getInt(APP_THEME_KEY, ONE_THEME)
+    fun getSavedTheme(): Int {
+        return theme.getInt(APP_THEME_KEY, ONE_THEME)
     }
 
-    fun setSavedTheme(context: Context, themeNumber: Int) {
-        val preferences = context.getSharedPreferences(NAME_SHARED_PREFERENCE, Context.MODE_PRIVATE)
-        preferences.edit().putInt(APP_THEME_KEY, themeNumber).apply()
+    fun setSavedTheme(themeNumber: Int) {
+      theme.edit().putInt(APP_THEME_KEY, themeNumber).apply()
     }
 }
