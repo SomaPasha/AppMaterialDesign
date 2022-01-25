@@ -10,12 +10,12 @@ import space.kuz.appmaterialdesign.ui.fragment.DailyImageFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val appThemeSaved by lazy { AppThemePreferenceDelegate() }
+    private val appThemeSaved by lazy { AppThemePreferenceDelegate(this) }
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        setTheme(appThemeSaved.getSavedTheme(this))
+        setTheme(appThemeSaved.getSavedTheme())
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -19,7 +19,7 @@ import space.kuz.appmaterialdesign.ui.*
 import space.kuz.appmaterialdesign.ui.viewmodel.DailyImageViewModel
 
 class DailyImageFragment : Fragment() {
-    private val appThemeSaved by lazy { AppThemePreferenceDelegate() }
+    private val appThemeSaved by lazy { AppThemePreferenceDelegate(requireContext()) }
 
     private val viewModel by viewModels<DailyImageViewModel>()
 
@@ -67,8 +67,8 @@ class DailyImageFragment : Fragment() {
 
         fabAdd = view.findViewById(R.id.fab)
         fabAdd.setOnClickListener {
-            val newTheme =appThemeSaved.savedThemeToStyleId(appThemeSaved.getSavedTheme(requireActivity()))
-                appThemeSaved.setSavedTheme(requireActivity(),newTheme)
+            val newTheme =appThemeSaved.savedThemeToStyleId(appThemeSaved.getSavedTheme())
+                appThemeSaved.setSavedTheme(newTheme)
             requireActivity().recreate()
         }
 
