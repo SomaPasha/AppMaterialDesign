@@ -12,7 +12,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.*
-import kotlinx.coroutines.flow.callbackFlow
 import space.kuz.appmaterialdesign.R
 import space.kuz.appmaterialdesign.domain.entity.DailyImage
 import space.kuz.appmaterialdesign.ui.*
@@ -73,7 +72,9 @@ class DailyImageFragment : Fragment() {
         }
 
         inputLayoutWiki.setEndIconOnClickListener {
-            startActivity(viewModel.openWiki(inputEditTextWiki.text.toString()))
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = viewModel.openUri(inputEditTextWiki.text.toString())
+            startActivity(intent)
         }
 
         startBottomSheetBehavior(view)
